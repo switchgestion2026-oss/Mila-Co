@@ -213,7 +213,7 @@ const KEY='tienda:'+API_URL.slice(-14);
 let NEG={},PRODS=[],CART={},enviando=false,TIENDA={abierto:true,msg:'',minimo:0},T0=0,PID='';
 let TA=TEMA;
 function pintarTema(x){
-  const T=Object.assign({},TEMA,x||{}),r=document.documentElement.style;
+  const T=Object.assign({},TEMA,x||{}),r=document.documentElement.style;   if(TEMA.logo)T.logo=TEMA.logo;
   r.setProperty('--gold',T.acento);r.setProperty('--gold-d',T.acentoTexto);r.setProperty('--ink',T.oscuro);
   r.setProperty('--bg',T.fondo);r.setProperty('--surface',T.superficie);r.setProperty('--line',T.borde);r.setProperty('--r',T.radio+'px');
   r.setProperty('--ft',"'"+T.fuenteTitulos+"',sans-serif");r.setProperty('--fb',"'"+T.fuenteTexto+"',system-ui,sans-serif");
