@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://connect.facebook.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src https://script.google.com https://script.googleusercontent.com https://www.facebook.com https://connect.facebook.net https://www.googletagmanager.com https://*.google-analytics.com; object-src 'none'; base-uri 'self'; frame-src 'none'">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1"> <!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-0P2MPKMKJ7"></script> <script>   window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag('js', new Date());   gtag('config', 'G-0P2MPKMKJ7'); </script>
 <title>Mila &amp; Co · Pedidos online</title> <link rel="icon" type="image/png" sizes="32x32" href="favicon.png"> <link rel="apple-touch-icon" href="apple-touch-icon.png"> <link rel="preload" as="image" href="logo.webp">
 <meta name="description" content="Milanesas artesanales congeladas en Olavarría. Hacé tu pedido online: retiro o envío. Te confirmamos por WhatsApp.">
 <meta name="theme-color" content="#2A2724">
@@ -230,7 +230,7 @@ pintarTema(leer(KEY+':tema')); if(TA.logo)$('nombre').innerHTML='<img class="log
 
 function leer(k){try{return JSON.parse(localStorage.getItem(k)||'null');}catch(e){return null;}}
 function guardar(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
-function track(ev,data){try{if(window.fbq)fbq('track',ev,data);if(window.dataLayer)dataLayer.push(Object.assign({event:ev},data));}catch(e){}}
+function track(ev,data){try{if(window.fbq)fbq('track',ev,data);if(window.gtag){const m={AddToCart:'add_to_cart',InitiateCheckout:'begin_checkout',Purchase:'purchase'};gtag('event',m[ev]||ev,{currency:data.currency,value:data.value});}}catch(e){}}
 const cant=()=>Object.values(CART).reduce((a,q)=>a+q,0);
 const total=()=>Object.keys(CART).reduce((a,id)=>{const p=PRODS.find(x=>x.id===id);return a+(p?p.p*CART[id]:0);},0);
 const prod=id=>PRODS.find(x=>x.id===id);
