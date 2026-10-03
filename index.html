@@ -351,12 +351,12 @@ function textoWA(d,c){
   return L.join('\n');
 }
 function vistaOk(d,c){
-  $('dlg-t').textContent='Pedido enviado';
-  const wa=NEG.wa?'<a class="btn" target="_blank" rel="noopener" href="https://wa.me/'+esc(NEG.wa)+'?text='+encodeURIComponent(textoWA(d,c))+'">Confirmar por WhatsApp</a>':'';
+  $('dlg-t').textContent=NEG.wa?'Último paso':'Pedido enviado';
+  const wa=NEG.wa?'<a class="btn" target="_blank" rel="noopener" href="https://wa.me/'+esc(NEG.wa)+'?text='+encodeURIComponent(textoWA(d,c))+'">Enviar pedido por WhatsApp</a>':'';
   const alias=(c.pago==='Transferencia'&&NEG.alias)?'<p>Alias para transferir:</p><div class="alias"><b id="alias-v">'+esc(NEG.alias)+'</b><button type="button" class="btn sec" data-act="copiar">Copiar</button></div>':'';
   $('dlg-body').innerHTML='<div class="okv"><div class="okic" aria-hidden="true">✓</div><h3>¡Recibimos tu pedido '+esc(d.id)+'!</h3>'+
     '<p>Total productos: <b>'+ar(d.total)+'</b>'+(c.entrega==='Envío'?'. El envío se coordina aparte con el delivery.':'.')+'</p>'+alias+
-    (NEG.wa?'<p>Para agilizarlo, mandanos el detalle por WhatsApp.</p>':'<p>El local se va a comunicar con vos para confirmarlo.</p>')+wa+
+    (NEG.wa?'<p><b>Tu pedido se confirma cuando nos mandes el WhatsApp.</b> Te lo abrimos con el detalle ya escrito: solo tocá Enviar.</p>':'<p>El local se va a comunicar con vos para confirmarlo.</p>')+wa+
     '<button type="button" class="btn sec" data-act="cerrar">Cerrar</button></div>';
 }
 async function enviar(ev){
@@ -382,7 +382,7 @@ async function enviar(ev){
     track('Purchase',{value:d.total,currency:'ARS',content_ids:(d.items||[]).map(i=>i.id)});
     CART={};guardar(KEY,CART);
     pintarGrid();pintarBarra();
-    vistaOk(d,c);
+    vistaOk(d,c);     if(NEG.wa)setTimeout(()=>{location.href='https://wa.me/'+NEG.wa+'?text='+encodeURIComponent(textoWA(d,c));},1500);
   }catch(e){
     const m=String(e.message||'');
     err.textContent=e.name==='AbortError'?'Está tardando más de lo normal. Tocá "Enviar pedido" de nuevo: si ya había entrado, te mostramos el número.':e.srv?m:'No pudimos enviar el pedido. Revisá tu conexión e intentá de nuevo.';
