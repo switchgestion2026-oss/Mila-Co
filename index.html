@@ -43,6 +43,12 @@ button,input,textarea{font:inherit;color:inherit}
 .chips{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
 .chips li>*{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border:1px solid rgba(255,255,255,.28);border-radius:999px;color:#fff;font-size:14px;text-decoration:none}
 .chips a:hover{background:rgba(255,255,255,.12)}
+.cyber{margin-top:-22px;position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--ink);color:#fff;border:2px solid var(--gold);border-radius:14px;padding:12px 16px;box-shadow:0 8px 20px -14px rgba(23,25,28,.5)}
+.cyber[hidden]{display:none}
+.cyber+.pasos{margin-top:12px}
+.cyber b{font-family:var(--ft);font-size:24px;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase}
+.cyber p{font-size:13px;color:#DCD2C1}
+.cyber output{font-family:var(--ft);font-size:26px;letter-spacing:1px;color:#fff;white-space:nowrap}
 
 /* COMO FUNCIONA */
 .pasos{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:-22px;position:relative}
@@ -171,7 +177,8 @@ fieldset.f{border:0;min-width:0}
   <ul class="chips" id="chips"></ul>
 </div></header>
 <div class="wrap">
-  <ol class="pasos" aria-label="Cómo funciona">
+<div class="cyber" id="cyber" hidden><div><b>Cyber Monday</b><p>Promos vigentes hasta el miércoles 4/11. Después vuelven a precio normal.</p></div><div><p>Terminan en</p><output id="cy-t" aria-live="off"></output></div></div>
+<ol class="pasos" aria-label="Cómo funciona">
     <li><b>1</b><span>Elegí lo que querés</span></li>
     <li><b>2</b><span>Mandá tu pedido</span></li>
     <li><b>3</b><span>Te confirmamos por WhatsApp</span></li>
@@ -418,9 +425,9 @@ function aplicar(d){
   else $('nombre').textContent=NEG.nombre||'';
   $('tag').textContent=NEG.tagline||'';
   const chips=[];
-  if(NEG.ciudad)chips.push('<li><span>'+esc(NEG.ciudad)+'</span></li>');
+  chips.push('<li><a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent('Av. Colón 2832, Olavarría, Buenos Aires, Argentina')+'" target="_blank" rel="noopener">📍 Av. Colón 2832, Olavarría</a></li>');
   if(NEG.instagram){const u=String(NEG.instagram).replace(/^@/,'');chips.push('<li><a href="https://instagram.com/'+encodeURIComponent(u)+'" target="_blank" rel="noopener">@'+esc(u)+'</a></li>');}
-  if(NEG.wa)chips.push('<li><a href="https://wa.me/'+esc(NEG.wa)+'" target="_blank" rel="noopener">Escribinos por WhatsApp</a></li>');
+  if(NEG.wa)chips.push('<li><a href="https://wa.me/'+esc(NEG.wa)+'" target="_blank" rel="noopener">📞 WhatsApp '+esc(String(NEG.wa).replace(/^549/,''))+'</a></li>');
   if(TIENDA.minimo>0)chips.push('<li><span>Pedido mínimo '+ar(TIENDA.minimo)+'</span></li>');
   $('chips').innerHTML=chips.join('');
   $('foot-n').textContent=NEG.nombre?'© '+new Date().getFullYear()+' '+NEG.nombre:'';
@@ -463,6 +470,17 @@ $('q').addEventListener('input',pintarGrid);
   c.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'&&!c.classList.contains('swing'))hamaca();});
   c.addEventListener('click',hamaca);
   c.addEventListener('animationend',()=>c.classList.remove('swing'));
+})();
+(function(){
+  const FIN=new Date('2026-11-04T23:59:59-03:00').getTime(),el=$('cyber'),t=$('cy-t');
+  function tick(){
+    const ms=FIN-Date.now();
+    if(ms<=0){el.hidden=true;clearInterval(iv);return;}
+    const d=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5),m=Math.floor(ms%36e5/6e4),s=Math.floor(ms%6e4/1e3);
+    t.textContent=(d?d+'d ':'')+String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+    el.hidden=false;
+  }
+  const iv=setInterval(tick,1000);tick();
 })();
 CART=leer(KEY)||{};
 cargar();
