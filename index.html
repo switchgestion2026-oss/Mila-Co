@@ -3,24 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://connect.facebook.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src https://script.google.com https://script.googleusercontent.com https://www.facebook.com https://connect.facebook.net https://www.googletagmanager.com https://*.google-analytics.com; object-src 'none'; base-uri 'self'; frame-src 'none'">
-<meta name="viewport" content="width=device-width,initial-scale=1"> <!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-0P2MPKMKJ7"></script> <script>   window.dataLayer = window.dataLayer || [];   function gtag(){dataLayer.push(arguments);}   gtag('js', new Date());   gtag('config', 'G-0P2MPKMKJ7'); </script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Mila &amp; Co · Pedidos online</title> <link rel="icon" type="image/png" sizes="32x32" href="favicon.png"> <link rel="apple-touch-icon" href="apple-touch-icon.png"> <link rel="preload" as="image" href="logo.webp">
 <meta name="description" content="Milanesas artesanales congeladas en Olavarría. Hacé tu pedido online: retiro o envío. Te confirmamos por WhatsApp.">
 <meta name="theme-color" content="#2A2724">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://switchgestion2026-oss.github.io/Mila-Co/">
+<meta property="og:url" content="https://milayco.com.ar/">
+<link rel="canonical" href="https://milayco.com.ar/">
 <meta property="og:title" content="Mila &amp; Co · Pedidos online">
 <meta property="og:description" content="Milanesas artesanales congeladas. Elegí, mandá tu pedido y te confirmamos por WhatsApp.">
-<meta property="og:image" content="https://switchgestion2026-oss.github.io/Mila-Co/og.jpg">
+<meta property="og:image" content="https://milayco.com.ar/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://script.google.com" crossorigin>
 <link rel="preconnect" href="https://script.googleusercontent.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@400;500;600;700&display=swap">
 <style>
-:root{--bg:#F5F2EC;--surface:#fff;--ink:#17191C;--ink2:#4A4D50;--ink3:#5F6265;--line:#E4E0D8;--gold:#B8946A;--gold-d:#8A6A42;--ok:#3F7050;--err:#A63A44;--r:18px;--ft:'Barlow Condensed',sans-serif;--fb:'Barlow',system-ui,sans-serif}
+:root{--bg:#FDF9F1;--surface:#fff;--ink:#361509;--ink2:#5A2B18;--ink3:#7A5544;--line:#EFE0C2;--cream:#F7EEDB;--gold:#F4B942;--gold-d:#8C5E14;--ok:#3A6B35;--err:#A32E1E;--r:20px;--ft:'Playfair Display',Georgia,serif;--fb:'Inter',system-ui,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--fb);background:var(--bg);color:var(--ink);font-size:15px;line-height:1.4}
 button,input,textarea{font:inherit;color:inherit}
@@ -29,30 +30,33 @@ button,input,textarea{font:inherit;color:inherit}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
 
 /* HERO */
-.hero{position:relative;overflow:hidden;color:#fff;border-radius:0 0 30px 30px;padding:34px 0 40px;
-  background:radial-gradient(circle at calc(100% + 20px) -20px,color-mix(in srgb,var(--gold) 16%,transparent) 46px,transparent 47px),var(--ink)}
-.hero::before,.hero::after{content:'';position:absolute;border-radius:50%;border:2px solid var(--gold);pointer-events:none}
-.hero::before{width:240px;height:240px;right:-120px;top:-110px;opacity:.28}
-.hero::after{width:180px;height:180px;left:-120px;bottom:-110px;opacity:.2}
-.hero .wrap{position:relative;z-index:1}
-.hero h1 .logo{display:block;width:104px;height:104px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 3px var(--gold),0 10px 24px -8px rgba(0,0,0,.45)}
-.kick{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold)}
+.hero{padding:28px 0 40px}
+.hero .wrap{display:grid;gap:28px;align-items:center}
+@media(min-width:860px){.hero .wrap{grid-template-columns:1.05fr 1fr;gap:44px}}
+.marca{display:flex;align-items:center;gap:12px}
+.marca .logo{display:block;width:60px;height:60px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px var(--ink)}
+.marca b{display:block;font:700 20px/1.1 var(--ft)}
+.marca span{font-size:13px;color:var(--ink3)}
+.kick{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-d)}
 .kick::before{content:'';width:26px;height:2px;background:var(--gold);border-radius:2px}
-.hero h1{font-family:var(--ft);font-size:clamp(42px,11vw,72px);letter-spacing:2px;text-transform:uppercase;line-height:1.02;margin-top:10px}
-.hero .tag{color:#DCD2C1;font-size:17px;margin-top:8px;max-width:34ch}
+.hero h1{font-family:var(--ft);font-weight:700;font-size:clamp(34px,8vw,56px);letter-spacing:-.5px;line-height:1.05;margin-top:22px}
+.hero h1 em,.ideas h2 em{font-style:italic}
+.hero h1 em{background:linear-gradient(transparent 60%,var(--gold) 60%,var(--gold) 90%,transparent 90%)}
+.lead{color:var(--ink2);font-size:17px;margin-top:14px;max-width:40ch}
+.ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.ctas .btn{width:auto;min-height:52px;padding:0 24px;border-radius:14px}
 .chips{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-.chips li>*{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border:1px solid rgba(255,255,255,.28);border-radius:999px;color:#fff;font-size:14px;text-decoration:none}
-.chips a:hover{background:rgba(255,255,255,.12)}
-.cyber{margin-top:-22px;position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--ink);color:#fff;border:2px solid var(--gold);border-radius:14px;padding:12px 16px;box-shadow:0 8px 20px -14px rgba(23,25,28,.5)}
-.cyber[hidden]{display:none}
-.cyber+.pasos{margin-top:12px}
-.cyber b{font-family:var(--ft);font-size:24px;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase}
-.cyber p{font-size:13px;color:#DCD2C1}
-.cyber output{font-family:var(--ft);font-size:26px;letter-spacing:1px;color:#fff;white-space:nowrap}
+.chips li>*{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);font-size:14px;text-decoration:none}
+.chips a:hover{background:var(--cream)}
+.collage{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.collage figure{position:relative;aspect-ratio:1;border-radius:18px;overflow:hidden;background:linear-gradient(135deg,var(--cream),var(--gold))}
+.collage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.collage figcaption{position:absolute;inset:auto 0 0;padding:30px 12px 10px;background:linear-gradient(transparent,rgba(54,21,9,.82));color:#fff;font:700 clamp(17px,4.5vw,24px)/1 var(--ft);text-transform:uppercase}
+#catalogo,#ideas,#faq{scroll-margin-top:12px}
 
 /* COMO FUNCIONA */
-.pasos{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:-22px;position:relative}
-.pasos li{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 10px;font-size:13px;font-weight:500;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;box-shadow:0 8px 20px -14px rgba(23,25,28,.35)}
+.pasos{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;position:relative}
+.pasos li{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 10px;font-size:13px;font-weight:500;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;box-shadow:0 8px 20px -14px rgba(54,21,9,.35)}
 .pasos b{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--gold);color:var(--ink);font-size:13px}
 @media(min-width:560px){.pasos li{flex-direction:row;justify-content:center;text-align:left;font-size:14px;padding:14px}}
 
@@ -61,8 +65,8 @@ button,input,textarea{font:inherit;color:inherit}
 
 /* PRODUCTOS */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;padding:18px 0 10px}
-.card{background:var(--surface);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;box-shadow:0 0 0 1px var(--line),0 10px 24px -16px rgba(23,25,28,.35)}
-.card.en{box-shadow:0 0 0 2px var(--gold),0 10px 24px -16px rgba(23,25,28,.35)}
+.card{background:var(--surface);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;box-shadow:0 0 0 1px var(--line),0 10px 24px -16px rgba(54,21,9,.35)}
+.card.en{box-shadow:0 0 0 2px var(--gold),0 10px 24px -16px rgba(54,21,9,.35)}
 .ph{position:relative;aspect-ratio:4/3;overflow:hidden;background:linear-gradient(135deg,color-mix(in srgb,var(--gold) 12%,#fff),color-mix(in srgb,var(--gold) 32%,#fff));display:flex;align-items:center;justify-content:center;font:700 46px var(--ft);color:var(--gold-d)}
 .ph::before{content:'';position:absolute;width:120%;aspect-ratio:1;border-radius:50%;border:2px solid color-mix(in srgb,var(--gold-d) 25%,transparent);right:-55%;top:-50%}
 .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -72,21 +76,59 @@ button,input,textarea{font:inherit;color:inherit}
 .pr{font-family:var(--ft);font-size:26px;font-weight:700;margin-top:auto;padding-top:8px;letter-spacing:.3px}
 .ctl{margin-top:8px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;width:100%;padding:0 16px;border-radius:12px;border:1px solid var(--ink);background:var(--ink);color:#fff;font-weight:600;cursor:pointer;text-decoration:none}
-.btn:hover{background:#2C2F33}
+.btn:hover{background:var(--ink2)}
 .btn.sec{background:var(--surface);color:var(--ink)}
-.btn.sec:hover{background:#F0ECE3}
+.btn.sec:hover{background:var(--cream)}
 .btn[disabled]{opacity:.6;cursor:default}
 .step{display:flex;align-items:center;justify-content:space-between;height:46px;border:1px solid var(--ink);border-radius:12px;background:var(--surface)}
 .step button{width:50px;height:100%;background:none;border:0;font-size:22px;cursor:pointer;border-radius:12px}
-.step button:hover{background:#F0ECE3}
+.step button:hover{background:var(--cream)}
 .step output{font-weight:600;min-width:28px;text-align:center}
 .estado{text-align:center;color:var(--ink2);padding:60px 16px}
 .estado .btn{width:auto;margin-top:14px} .sk{pointer-events:none} .sk .ph::before{display:none} .sk .nm,.sk .pr{background:var(--line);border-radius:6px;color:transparent} .sk .nm{width:70%} .sk .pr{width:40%;height:26px;padding:0;margin-top:14px}
 
+/* IDEAS */
+.ideas{background:var(--ink);color:#FDF9F1;padding:56px 0;margin-top:40px}
+.ideas .kick{color:var(--gold)}
+.ideas h2,.faq h2{font:700 clamp(28px,6vw,40px)/1.1 var(--ft);margin-top:8px}
+.ideas h2 em{color:var(--gold)}
+.ideas .sub{color:#EFE0C2;margin-top:10px;max-width:52ch}
+.ideas-g{display:grid;gap:16px;margin-top:28px}
+@media(min-width:760px){.ideas-g{grid-template-columns:repeat(3,1fr)}}
+.ideas article{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--r);overflow:hidden}
+.ideas figure{aspect-ratio:4/3;background:linear-gradient(135deg,#5A2B18,#8C5E14)}
+.ideas figure img{display:block;width:100%;height:100%;object-fit:cover}
+.ideas article div{padding:16px 18px 20px}
+.ideas small{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+.ideas h3{font:700 21px/1.2 var(--ft);margin:6px 0}
+.ideas p{color:#EFE0C2;font-size:14px}
+.ideas .btn{width:auto;margin-top:26px;padding:0 24px;background:var(--gold);border-color:var(--gold);color:var(--ink)}
+
+/* FAQ */
+.faq{padding:52px 0 10px}
+.faq-l{display:grid;gap:10px;max-width:720px;margin-top:20px}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:0 18px}
+.faq summary{min-height:54px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:600;cursor:pointer;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';font-size:22px;color:var(--gold-d)}
+.faq details[open] summary::after{content:'−'}
+.faq details p{padding:0 0 16px;color:var(--ink2)}
+
+/* MILA QUE SE DORA */
+.dora{position:fixed;top:0;left:0;right:0;height:6px;z-index:6;pointer-events:none}
+.dora-t{position:absolute;inset:0;background:color-mix(in srgb,var(--gold) 18%,transparent)}
+.dora-t i{display:block;height:100%;width:calc(var(--k,0)*100%);background:linear-gradient(90deg,#F3E2B8,var(--gold),#B5701C)}
+#dora-m{position:absolute;top:-4px;left:calc((100% - 40px)*var(--k,0));width:40px;height:40px;object-fit:contain;filter:sepia(calc(.3 + var(--k,0)*.5)) saturate(calc(.6 + var(--k,0)*1.2)) brightness(calc(1.25 - var(--k,0)*.35));transform:rotate(calc(var(--k,0)*360deg))}
+#dora-ok{position:absolute;right:10px;top:40px;padding:4px 10px;border-radius:999px;background:var(--ink);color:#fff;font:700 12px var(--fb);opacity:0;transform:translateY(-6px);transition:opacity .3s,transform .3s}
+.dora.fin #dora-ok{opacity:1;transform:none}
+.vuela{position:fixed;width:56px;height:56px;object-fit:contain;z-index:7;pointer-events:none}
+.vuela.foto{object-fit:cover;border-radius:50%;box-shadow:0 6px 16px -4px rgba(54,21,9,.5)}
+@media (prefers-reduced-motion:reduce){#dora-m{transform:none}}
+
 /* BARRA CARRITO */
-.bar{position:fixed;left:0;right:0;bottom:0;padding:26px 16px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(rgba(245,242,236,0),var(--bg) 45%);pointer-events:none;z-index:5}
+.bar{position:fixed;left:0;right:0;bottom:0;padding:26px 16px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(rgba(253,249,241,0),var(--bg) 45%);pointer-events:none;z-index:5}
 .bar[hidden]{display:none}
-.bar .btn{max-width:560px;margin:0 auto;display:flex;justify-content:space-between;gap:12px;min-height:54px;border-radius:999px;padding:0 20px 0 12px;pointer-events:auto;box-shadow:0 10px 26px -6px rgba(23,25,28,.5)}
+.bar .btn{max-width:560px;margin:0 auto;display:flex;justify-content:space-between;gap:12px;min-height:54px;border-radius:999px;padding:0 20px 0 12px;pointer-events:auto;box-shadow:0 10px 26px -6px rgba(54,21,9,.5)}
 .bar .izq{display:flex;align-items:center;gap:10px}
 .bi{position:relative;display:flex}
 .bi svg{width:26px;height:26px}
@@ -104,12 +146,12 @@ button,input,textarea{font:inherit;color:inherit}
 
 /* MODAL */
 dialog{width:min(560px,calc(100% - 20px));max-height:calc(100dvh - 20px);margin:auto;overflow:auto;border:0;border-radius:22px;padding:0;background:var(--bg);color:var(--ink)}
-dialog::backdrop{background:rgba(23,25,28,.55)}
+dialog::backdrop{background:rgba(54,21,9,.55)}
 dialog[open]{animation:up .25s ease-out}
 @keyframes up{from{transform:translateY(24px);opacity:0}}
 @media(max-width:600px){dialog{width:100%;max-width:100%;max-height:92dvh;margin:auto 0 0;border-radius:24px 24px 0 0}}
 .dh{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 6px;position:sticky;top:0;background:var(--bg);z-index:1}
-.dh h2{font-family:var(--ft);font-size:28px;letter-spacing:1px;text-transform:uppercase}
+.dh h2{font-family:var(--ft);font-size:24px;font-weight:700}
 .x{width:44px;height:44px;border:0;background:none;font-size:26px;cursor:pointer;border-radius:10px}
 .db{padding:6px 18px 22px}
 .item{display:grid;grid-template-columns:1fr 132px;gap:4px 12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
@@ -120,8 +162,11 @@ dialog[open]{animation:up .25s ease-out}
 .tot b{font-family:var(--ft);font-size:30px;letter-spacing:.5px}
 .aviso{font-size:13px;color:var(--ink3);margin-top:4px}
 .aviso.warn{color:var(--err);font-weight:500}
+.aviso.ok{color:var(--ok);font-weight:600}
+.prog{height:8px;margin-top:12px;background:var(--line);border-radius:999px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--ok);border-radius:999px;transition:width .4s}
 body.cerr main{position:relative}
-.cerrado{position:absolute;top:-18px;left:0;right:0;z-index:3;background:var(--surface);border:3px solid var(--gold);border-radius:16px;padding:34px 18px 18px;margin:0 auto;max-width:340px;text-align:center;transform:rotate(-1.2deg);transform-origin:50% -30px;box-shadow:0 18px 40px -10px rgba(23,25,28,.45);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.cerrado{position:absolute;top:-18px;left:0;right:0;z-index:3;background:var(--surface);border:3px solid var(--gold);border-radius:16px;padding:34px 18px 18px;margin:0 auto;max-width:340px;text-align:center;transform:rotate(-1.2deg);transform-origin:50% -30px;box-shadow:0 18px 40px -10px rgba(54,21,9,.45);cursor:pointer;-webkit-tap-highlight-color:transparent}
 .cerrado.swing{animation:swing 1.6s cubic-bezier(.36,.07,.19,.97)}
 @keyframes swing{0%{transform:rotate(-1.2deg)}15%{transform:rotate(8deg)}35%{transform:rotate(-6deg)}55%{transform:rotate(3.5deg)}75%{transform:rotate(-2.5deg)}90%{transform:rotate(0)}100%{transform:rotate(-1.2deg)}}
 body.cerr .pasos{display:none}
@@ -137,12 +182,12 @@ body.cerr .grid{opacity:.55;filter:grayscale(.3)}
 .cerrado .hor span{font-weight:600;white-space:nowrap}
 .f{margin-top:14px;display:flex;flex-direction:column;gap:5px}
 .f label,.f legend{font-size:13px;font-weight:600}
-.f input[type=text],.f input[type=tel],.f textarea{width:100%;min-height:46px;padding:10px 14px;border:1px solid #CFC9BC;border-radius:12px;background:var(--surface)}
+.f input[type=text],.f input[type=tel],.f textarea{width:100%;min-height:46px;padding:10px 14px;border:1px solid #DCCBA8;border-radius:12px;background:var(--surface)}
 fieldset.f{border:0;min-width:0}
 .opts{display:flex;gap:8px;flex-wrap:wrap}
 .opt{position:relative;flex:1;min-width:120px}
 .opt input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
-.opt span{display:flex;align-items:center;justify-content:center;min-height:46px;border:1px solid #CFC9BC;border-radius:12px;background:var(--surface);font-weight:500}
+.opt span{display:flex;align-items:center;justify-content:center;min-height:46px;border:1px solid #DCCBA8;border-radius:12px;background:var(--surface);font-weight:500}
 .opt input:checked+span{border-color:var(--ink);background:var(--ink);color:#fff}
 .opt input:focus-visible+span{outline:3px solid var(--gold-d);outline-offset:2px}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
@@ -151,7 +196,7 @@ fieldset.f{border:0;min-width:0}
 .envia{margin-top:16px}
 .priv{margin-top:10px;font-size:12px;text-align:center}
 .okic{width:60px;height:60px;border-radius:50%;background:var(--ok);color:#fff;display:flex;align-items:center;justify-content:center;font-size:32px;margin:8px 0 12px;animation:pop .45s}
-.okv h3{font-family:var(--ft);font-size:30px;letter-spacing:.5px;line-height:1.1;margin-bottom:4px}
+.okv h3{font-family:var(--ft);font-size:28px;line-height:1.1;margin-bottom:4px}
 .okv p{color:var(--ink2);margin-top:6px}
 .okv .btn{margin-top:14px}
 .alias{display:flex;gap:8px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 8px 8px 14px;margin-top:10px}
@@ -159,6 +204,7 @@ fieldset.f{border:0;min-width:0}
 .alias .btn{width:auto;min-height:40px;margin-top:0}
 
 @media (prefers-reduced-motion:no-preference){
+  html{scroll-behavior:smooth}
   .btn,.opt span,.card{transition:background .15s,transform .2s,box-shadow .2s}
   .card{animation:in .45s both;animation-delay:calc(var(--i,0)*45ms)}
   .card:hover{transform:translateY(-3px)}   .card.sk{animation:sk 1s ease-in-out infinite alternate}   @keyframes sk{to{opacity:.45}}
@@ -170,27 +216,58 @@ fieldset.f{border:0;min-width:0}
 </style>
 </head>
 <body>
+<div class="dora" id="dora" aria-hidden="true"><div class="dora-t"><i></i></div><img src="img/mila.webp" alt="" id="dora-m" width="40" height="40" onerror="this.remove()"><span id="dora-ok">¡Lista!</span></div>
 <header class="hero"><div class="wrap">
-  <p class="kick">Pedidos online</p>
-  <h1 id="nombre">Mila &amp; Co</h1>
-  <p class="tag" id="tag"></p>
-  <ul class="chips" id="chips"></ul>
+  <div>
+    <div class="marca"><div id="nombre"></div><div><b>Mila &amp; Co</b><span id="tag"></span></div></div>
+    <h1>Si estás viendo esto, es hora de <em>llenar tu freezer</em>.</h1>
+    <p class="lead">Milanesas artesanales congeladas, listas para ir del freezer al horno, la airfryer o la sartén.</p>
+    <div class="ctas"><a class="btn" href="#catalogo">Ver milanesas</a><a class="btn sec" href="#ideas">Ideas para comerlas</a></div>
+    <ul class="chips" id="chips"></ul>
+  </div>
+  <div class="collage" aria-hidden="true">
+    <figure><img src="img/collage-1.webp" alt="" width="600" height="600" onerror="this.remove()"><figcaption>Si estás</figcaption></figure>
+    <figure><img src="img/collage-2.webp" alt="" width="600" height="600" onerror="this.remove()"><figcaption>viendo esto</figcaption></figure>
+    <figure><img src="img/collage-3.webp" alt="" width="600" height="600" onerror="this.remove()"><figcaption>es hora</figcaption></figure>
+    <figure><img src="img/collage-4.webp" alt="" width="600" height="600" onerror="this.remove()"><figcaption>de pedir</figcaption></figure>
+  </div>
 </div></header>
 <div class="wrap">
-<div class="cyber" id="cyber" hidden><div><b>Cyber Monday</b><p>Promos vigentes hasta el miércoles 4/11. Después vuelven a precio normal.</p></div><div><p>Terminan en</p><output id="cy-t" aria-live="off"></output></div></div>
-<ol class="pasos" aria-label="Cómo funciona">
+  <ol class="pasos" aria-label="Cómo funciona">
     <li><b>1</b><span>Elegí lo que querés</span></li>
     <li><b>2</b><span>Mandá tu pedido</span></li>
     <li><b>3</b><span>Te confirmamos por WhatsApp</span></li>
   </ol>
 </div>
-<main class="wrap">
+<main class="wrap" id="catalogo">
   <div class="cerrado" id="cerrado" role="status" hidden></div>
   <div class="buscar" id="buscar" hidden><label class="sr" for="q">Buscar producto</label><input type="search" id="q" placeholder="Buscar producto..." autocomplete="off"></div>
   <div id="estado" class="estado" role="status" hidden></div>
   <div id="grid" class="grid"></div>
   <noscript><p class="estado">Para hacer un pedido necesitás activar JavaScript.</p></noscript>
 </main>
+<section class="ideas" id="ideas"><div class="wrap">
+  <p class="kick">Ideas Mila &amp; Co</p>
+  <h2>3 formas de comer una <em>misma milanesa</em></h2>
+  <p class="sub">Con una bolsa en el freezer resolvés el almuerzo del martes, la cena rápida del jueves y el antojo del viernes.</p>
+  <div class="ideas-g">
+    <article><figure><img src="img/idea-clasica.webp" alt="Milanesa al plato con puré y limón" width="1000" height="750" loading="lazy" onerror="this.remove()"></figure><div><small>01 · Al plato</small><h3>Clásica con puré y limón</h3><p>Al horno bien caliente y el limón recién en el plato, así el rebozado sigue crocante.</p></div></article>
+    <article><figure><img src="img/idea-napolitana.webp" alt="Milanesa a la napolitana gratinada" width="1000" height="750" loading="lazy" onerror="this.remove()"></figure><div><small>02 · Para la cena</small><h3>A la napolitana</h3><p>Cuando le falten unos minutos: salsa de tomate, muzzarella y orégano. Gratinala con el grill.</p></div></article>
+    <article><figure><img src="img/idea-sandwich.webp" alt="Sándwich de milanesa en pan ciabatta" width="1000" height="750" loading="lazy" onerror="this.remove()"></figure><div><small>03 · Para el antojo</small><h3>Sándwich bien armado</h3><p>En pan ciabatta tostado, con lechuga, tomate y mayonesa de ajo.</p></div></article>
+  </div>
+  <a class="btn" href="#catalogo">Elegir mis milanesas</a>
+</div></section>
+<section class="faq" id="faq"><div class="wrap">
+  <p class="kick">Preguntas frecuentes</p>
+  <h2>Lo que más nos preguntan</h2>
+  <div class="faq-l">
+    <details><summary>¿Hay que descongelarlas?</summary><p>Para nada. Son de las que no esperan: del freezer al horno, sin escalas ni trasbordo.</p></details>
+    <details><summary>¿Cómo las cocino?</summary><p><b>Horno:</b> a temperatura media y precalentado, unos 8 a 10 minutos de cada lado (16 a 20 en total) o hasta que estén doradas. <b>Airfryer:</b> precalentada a 190 °C, de 12 a 15 minutos, dándolas vuelta a la mitad. Los tiempos pueden variar según tu horno o tu airfryer.</p></details>
+    <details><summary>¿Cuánto duran en el freezer?</summary><p>Aguantan hasta 3 meses. Lo difícil es que vos aguantes tanto sin abrir la bolsa.</p></details>
+    <details><summary>¿Hacen envíos?</summary><p>¡Sí! Coordinamos para que te la lleve una moto hasta tu casa. El costo del envío se arregla directamente con el delivery.</p></details>
+    <details><summary>¿Cómo pago?</summary><p>Efectivo o transferencia. Simple, como tiene que ser una buena mila.</p></details>
+  </div>
+</div></section>
 <footer class="foot"><p id="foot-n"></p><p class="cred"><svg class="sw" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#111"/><rect x="7" y="14.5" width="26" height="11" rx="5.5" fill="none" stroke="#B8946A" stroke-width="1.8"/><circle class="sw-k" cx="13" cy="20" r="3.6"/></svg><span>Tienda hecha con <b>Switch Gestión</b></span></p></footer>
 <div class="bar" id="bar" hidden><button type="button" class="btn" data-act="abrir" id="bar-btn"></button></div>
 
@@ -201,15 +278,15 @@ fieldset.f{border:0;min-width:0}
 
 <script>
 const TEMA={
-  acento:'#B8946A',
-  acentoTexto:'#8A6A42',
-  oscuro:'#17191C',
-  fondo:'#F5F2EC',
+  acento:'#F4B942',
+  acentoTexto:'#8C5E14',
+  oscuro:'#361509',
+  fondo:'#FDF9F1',
   superficie:'#FFFFFF',
-  borde:'#E4E0D8',
-  fuenteTitulos:'Barlow Condensed',
-  fuenteTexto:'Barlow',
-  radio:18,
+  borde:'#EFE0C2',
+  fuenteTitulos:'Playfair Display',
+  fuenteTexto:'Inter',
+  radio:20,
   logo:'logo.webp'
 };
 const API_URL='https://script.google.com/macros/s/AKfycbyCCrn_26h_8Ce5Osj0oYeGmaUR4IqyNZ41ntVIHeKhIVSW669CorLQdEgO-FKKQ716/exec';
@@ -223,21 +300,21 @@ function pintarTema(x){
   const T=Object.assign({},TEMA,x||{}),r=document.documentElement.style;   if(TEMA.logo)T.logo=TEMA.logo;
   r.setProperty('--gold',T.acento);r.setProperty('--gold-d',T.acentoTexto);r.setProperty('--ink',T.oscuro);
   r.setProperty('--bg',T.fondo);r.setProperty('--surface',T.superficie);r.setProperty('--line',T.borde);r.setProperty('--r',T.radio+'px');
-  r.setProperty('--ft',"'"+T.fuenteTitulos+"',sans-serif");r.setProperty('--fb',"'"+T.fuenteTexto+"',system-ui,sans-serif");
+  r.setProperty('--ft',"'"+T.fuenteTitulos+"',Georgia,serif");r.setProperty('--fb',"'"+T.fuenteTexto+"',system-ui,sans-serif");
   const m=document.querySelector('meta[name="theme-color"]');if(m)m.content=T.oscuro;
   [T.fuenteTitulos,T.fuenteTexto].forEach(f=>{
-    if(!f||/^Barlow( Condensed)?$/.test(f)||document.querySelector('link[data-f="'+f+'"]'))return;
+    if(!f||/^(Barlow( Condensed)?|Playfair Display|Inter)$/.test(f)||document.querySelector('link[data-f="'+f+'"]'))return;
     const l=document.createElement('link');l.rel='stylesheet';l.dataset.f=f;
     l.href='https://fonts.googleapis.com/css2?family='+f.replace(/ /g,'+')+':wght@400;700&display=swap';
     document.head.appendChild(l);
   });
   TA=T;
 }
-pintarTema(leer(KEY+':tema')); if(TA.logo)$('nombre').innerHTML='<img class="logo" src="'+esc(TA.logo)+'" alt="" width="104" height="104">';
+pintarTema(leer(KEY+':tema')); if(TA.logo)$('nombre').innerHTML='<img class="logo" src="'+esc(TA.logo)+'" alt="" width="60" height="60">';
 
 function leer(k){try{return JSON.parse(localStorage.getItem(k)||'null');}catch(e){return null;}}
 function guardar(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
-function track(ev,data){try{if(window.fbq)fbq('track',ev,data);if(window.gtag){const m={AddToCart:'add_to_cart',InitiateCheckout:'begin_checkout',Purchase:'purchase'};gtag('event',m[ev]||ev,{currency:data.currency,value:data.value});}}catch(e){}}
+function track(ev,data){try{if(window.fbq)fbq('track',ev,data);if(window.dataLayer)dataLayer.push(Object.assign({event:ev},data));}catch(e){}}
 const cant=()=>Object.values(CART).reduce((a,q)=>a+q,0);
 const total=()=>Object.keys(CART).reduce((a,id)=>{const p=PRODS.find(x=>x.id===id);return a+(p?p.p*CART[id]:0);},0);
 const prod=id=>PRODS.find(x=>x.id===id);
@@ -245,7 +322,8 @@ const falta=()=>Math.max(0,(TIENDA.minimo||0)-total());
 function avisoMin(){
   const m=TIENDA.minimo||0;
   if(!(m>0))return '';
-  return falta()>0?'<p class="aviso warn">Pedido mínimo '+ar(m)+'. Te faltan '+ar(falta())+'.</p>':'';
+  const pct=Math.min(100,Math.round(total()/m*100));
+  return '<div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+pct+'"><i style="width:'+pct+'%"></i></div>'+(falta()>0?'<p class="aviso warn">Te faltan '+ar(falta())+' para el pedido mínimo de '+ar(m)+'.</p>':'<p class="aviso ok">Llegaste al pedido mínimo.</p>');
 }
 function ajustarEnviar(){const b=$('enviar');if(b&&!enviando)b.disabled=falta()>0;}
 function horariosAgrupados(h){
@@ -318,6 +396,7 @@ function cambiar(id,d){
   guardar(KEY,CART);
   const c=$('ctl-'+id);if(c){conFoco(c,ctl(p));const cd=c.closest('.card');if(cd)cd.classList.toggle('en',!!CART[id]);}
   pintarBarra();
+  if(d>0&&!$('dlg').open)volar(id);
   if($('dlg').open){if(!cant())$('dlg').close();else pintarResumen();}
 }
 
@@ -358,12 +437,12 @@ function textoWA(d,c){
   return L.join('\n');
 }
 function vistaOk(d,c){
-  $('dlg-t').textContent=NEG.wa?'Último paso':'Pedido enviado';
-  const wa=NEG.wa?'<a class="btn" target="_blank" rel="noopener" href="https://wa.me/'+esc(NEG.wa)+'?text='+encodeURIComponent(textoWA(d,c))+'">Enviar pedido por WhatsApp</a>':'';
+  $('dlg-t').textContent='Pedido enviado';
+  const wa=NEG.wa?'<a class="btn" target="_blank" rel="noopener" href="https://wa.me/'+esc(NEG.wa)+'?text='+encodeURIComponent(textoWA(d,c))+'">Confirmar por WhatsApp</a>':'';
   const alias=(c.pago==='Transferencia'&&NEG.alias)?'<p>Alias para transferir:</p><div class="alias"><b id="alias-v">'+esc(NEG.alias)+'</b><button type="button" class="btn sec" data-act="copiar">Copiar</button></div>':'';
   $('dlg-body').innerHTML='<div class="okv"><div class="okic" aria-hidden="true">✓</div><h3>¡Recibimos tu pedido '+esc(d.id)+'!</h3>'+
     '<p>Total productos: <b>'+ar(d.total)+'</b>'+(c.entrega==='Envío'?'. El envío se coordina aparte con el delivery.':'.')+'</p>'+alias+
-    (NEG.wa?'<p><b>Tu pedido se confirma cuando nos mandes el WhatsApp.</b> Te lo abrimos con el detalle ya escrito: solo tocá Enviar.</p>':'<p>El local se va a comunicar con vos para confirmarlo.</p>')+wa+
+    (NEG.wa?'<p>Para agilizarlo, mandanos el detalle por WhatsApp.</p>':'<p>El local se va a comunicar con vos para confirmarlo.</p>')+wa+
     '<button type="button" class="btn sec" data-act="cerrar">Cerrar</button></div>';
 }
 async function enviar(ev){
@@ -389,7 +468,7 @@ async function enviar(ev){
     track('Purchase',{value:d.total,currency:'ARS',content_ids:(d.items||[]).map(i=>i.id)});
     CART={};guardar(KEY,CART);
     pintarGrid();pintarBarra();
-    vistaOk(d,c);     if(NEG.wa)setTimeout(()=>{location.href='https://wa.me/'+NEG.wa+'?text='+encodeURIComponent(textoWA(d,c));},1500);
+    vistaOk(d,c);
   }catch(e){
     const m=String(e.message||'');
     err.textContent=e.name==='AbortError'?'Está tardando más de lo normal. Tocá "Enviar pedido" de nuevo: si ya había entrado, te mostramos el número.':e.srv?m:'No pudimos enviar el pedido. Revisá tu conexión e intentá de nuevo.';
@@ -421,13 +500,13 @@ function aplicar(d){
   guardar(KEY,CART);
   document.title=NEG.nombre||'Tienda';
   if(d.tema)pintarTema(d.tema);
-  if(TA.logo)$('nombre').innerHTML='<img class="logo" src="'+esc(TA.logo)+'" alt="'+esc(NEG.nombre||'')+'">';
+  if(TA.logo)$('nombre').innerHTML='<img class="logo" src="'+esc(TA.logo)+'" alt="'+esc(NEG.nombre||'')+'" width="60" height="60">';
   else $('nombre').textContent=NEG.nombre||'';
   $('tag').textContent=NEG.tagline||'';
   const chips=[];
-  chips.push('<li><a href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent('Av. Colón 2832, Olavarría, Buenos Aires, Argentina')+'" target="_blank" rel="noopener">📍 Av. Colón 2832, Olavarría</a></li>');
+  if(NEG.ciudad)chips.push('<li><span>'+esc(NEG.ciudad)+'</span></li>');
   if(NEG.instagram){const u=String(NEG.instagram).replace(/^@/,'');chips.push('<li><a href="https://instagram.com/'+encodeURIComponent(u)+'" target="_blank" rel="noopener">@'+esc(u)+'</a></li>');}
-  if(NEG.wa)chips.push('<li><a href="https://wa.me/'+esc(NEG.wa)+'" target="_blank" rel="noopener">📞 WhatsApp '+esc(String(NEG.wa).replace(/^549/,''))+'</a></li>');
+  if(NEG.wa)chips.push('<li><a href="https://wa.me/'+esc(NEG.wa)+'" target="_blank" rel="noopener">Escribinos por WhatsApp</a></li>');
   if(TIENDA.minimo>0)chips.push('<li><span>Pedido mínimo '+ar(TIENDA.minimo)+'</span></li>');
   $('chips').innerHTML=chips.join('');
   $('foot-n').textContent=NEG.nombre?'© '+new Date().getFullYear()+' '+NEG.nombre:'';
@@ -471,16 +550,23 @@ $('q').addEventListener('input',pintarGrid);
   c.addEventListener('click',hamaca);
   c.addEventListener('animationend',()=>c.classList.remove('swing'));
 })();
+function volar(id){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches||!Element.prototype.animate)return;
+  const c=$('ctl-'+id),bb=$('bar-btn');if(!c||$('bar').hidden)return;
+  const card=c.closest('.card'),ph=card&&card.querySelector('.ph'),foto=ph&&ph.querySelector('img');
+  const a=(ph||c).getBoundingClientRect(),r=(bb.querySelector('.bi')||bb).getBoundingClientRect(),s=56;
+  const el=document.createElement('img');el.alt='';el.className='vuela'+(foto?' foto':'');el.src=foto?foto.src:'img/mila.webp';
+  el.onerror=()=>el.remove();
+  el.style.left=(a.left+a.width/2-s/2)+'px';el.style.top=(a.top+a.height/2-s/2)+'px';
+  document.body.appendChild(el);
+  const dx=r.left+r.width/2-(a.left+a.width/2),dy=r.top+r.height/2-(a.top+a.height/2);
+  el.animate([{transform:'translate(0,0) scale(1) rotate(0)'},{transform:'translate('+dx*.5+'px,'+(dy*.5-80)+'px) scale(.8) rotate(200deg)',offset:.5},{transform:'translate('+dx+'px,'+dy+'px) scale(.3) rotate(360deg)',opacity:.6}],{duration:550,easing:'cubic-bezier(.5,0,.6,1)'}).onfinish=()=>{el.remove();bb.animate([{transform:'scale(1)'},{transform:'scale(1.06)'},{transform:'scale(1)'}],{duration:250});};
+}
 (function(){
-  const FIN=new Date('2026-11-04T23:59:59-03:00').getTime(),el=$('cyber'),t=$('cy-t');
-  function tick(){
-    const ms=FIN-Date.now();
-    if(ms<=0){el.hidden=true;clearInterval(iv);return;}
-    const d=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5),m=Math.floor(ms%36e5/6e4),s=Math.floor(ms%6e4/1e3);
-    t.textContent=(d?d+'d ':'')+String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
-    el.hidden=false;
-  }
-  const iv=setInterval(tick,1000);tick();
+  const d=$('dora');let t=0;
+  const upd=()=>{t=0;const h=document.documentElement,max=h.scrollHeight-h.clientHeight,k=max>0?Math.min(1,h.scrollTop/max):0;d.style.setProperty('--k',k.toFixed(3));d.classList.toggle('fin',k>.98);};
+  addEventListener('scroll',()=>{if(!t)t=requestAnimationFrame(upd);},{passive:true});
+  addEventListener('resize',upd);upd();
 })();
 CART=leer(KEY)||{};
 cargar();
