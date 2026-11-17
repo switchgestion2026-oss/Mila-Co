@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://script.googleusercontent.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@400;500;600;700&display=swap">
 <style>
-:root{--bg:#FDF9F1;--surface:#fff;--ink:#361509;--ink2:#5A2B18;--ink3:#7A5544;--line:#EFE0C2;--cream:#F7EEDB;--gold:#F4B942;--gold-d:#8C5E14;--ok:#3A6B35;--err:#A32E1E;--r:20px;--ft:'Playfair Display',Georgia,serif;--fb:'Inter',system-ui,sans-serif}
+:root{--rb:4px;--bg:#FDF9F1;--surface:#fff;--ink:#361509;--ink2:#5A2B18;--ink3:#7A5544;--line:#EFE0C2;--cream:#F7EEDB;--gold:#F4B942;--gold-d:#8C5E14;--ok:#3A6B35;--err:#A32E1E;--r:4px;--ft:'Playfair Display',Georgia,serif;--fb:'Inter',system-ui,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--fb);background:var(--bg);color:var(--ink);font-size:15px;line-height:1.4}
 button,input,textarea{font:inherit;color:inherit}
@@ -32,10 +32,10 @@ button,input,textarea{font:inherit;color:inherit}
 /* HERO */
 .top{max-width:1200px;margin:0 auto;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .marca{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
-.marca .logo{display:block;width:64px;height:64px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px var(--ink)}
+.marca .logo{display:block;width:64px;height:64px;border-radius:50%;object-fit:cover;}
 .marca b{display:block;font:700 26px/1.05 var(--ft)}
 .marca span{display:block;font-size:15px;color:var(--ink2)}
-.marca .amp{display:inline;font:700 .62em Georgia,'Times New Roman',serif;color:inherit;margin:0 .06em 0 .02em}
+.amp,.marca .amp{display:inline;font:700 .62em Georgia,'Times New Roman',serif;color:inherit;margin:0 .06em 0 .02em}
 .menu{display:none;gap:34px;list-style:none}
 .menu a{color:var(--ink);text-decoration:none;font-weight:500}
 .menu a:hover{color:var(--gold-d)}
@@ -68,7 +68,7 @@ button,input,textarea{font:inherit;color:inherit}
 .foto{position:relative;aspect-ratio:5/4;border-radius:46% 0 0 54% / 58% 0 0 42%;overflow:hidden;background:linear-gradient(135deg,var(--cream),var(--gold))}
 .foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 @media(min-width:900px){.top{position:absolute;top:0;left:0;right:0;z-index:3}.hero{padding:120px 0 64px;min-height:min(90vh,760px);display:flex;align-items:center}.foto{position:absolute;top:0;bottom:0;right:0;left:calc(max(20px,(100vw - 1160px)/2) + min(1160px,100vw - 40px)*.54);aspect-ratio:auto}}
-@media(max-width:899px){.foto{border-radius:28px}}
+@media(max-width:899px){.foto{border-radius:var(--rb)}}
 
 .chispa{position:absolute;z-index:1;width:64px;height:64px;color:var(--gold);top:24%;left:4%}
 @media(max-width:899px){.chispa{display:none}}
@@ -78,16 +78,56 @@ button,input,textarea{font:inherit;color:inherit}
 .chips a:hover{background:var(--cream)}
 .kick{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-d)}
 .kick::before{content:'';width:26px;height:2px;background:var(--gold);border-radius:2px}
-#catalogo,#ideas,#faq,#como,#contacto{scroll-margin-top:12px}
+#catalogo,#ideas,#faq,#como,#contacto,#freezer{scroll-margin-top:12px}
 
 /* COMO FUNCIONA */
 .pasos{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;position:relative}
-.pasos li{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 10px;font-size:13px;font-weight:500;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;box-shadow:0 8px 20px -14px rgba(54,21,9,.35)}
+.pasos li{background:var(--surface);border:1px solid var(--line);border-radius:var(--rb);padding:12px 10px;font-size:13px;font-weight:500;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;box-shadow:0 8px 20px -14px rgba(54,21,9,.35)}
 .pasos b{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--gold);color:var(--ink);font-size:13px}
 @media(min-width:560px){.pasos li{flex-direction:row;justify-content:center;text-align:left;font-size:14px;padding:14px}}
 
 .buscar{margin-top:18px}
 .buscar input{width:100%;min-height:46px;padding:0 16px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
+
+/* ARMA TU FREEZER */
+.fz{padding:48px 0 8px}
+.fz h2{font:700 clamp(28px,6vw,40px)/1.1 var(--ft);margin-top:8px}
+.fz .sub{color:var(--ink2);margin-top:8px;max-width:52ch}
+.fz-box{margin-top:22px;background:var(--surface);border:1px solid var(--line);border-radius:var(--rb);padding:22px;display:grid;gap:22px;box-shadow:0 18px 40px -28px rgba(54,21,9,.35)}
+@media(min-width:860px){.fz-box{grid-template-columns:1.4fr 1fr;padding:32px;gap:32px;align-items:start}}
+.fz-l{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink2);margin-bottom:10px}
+.fz-tam,.fz-pref{margin-bottom:22px}
+.fz-tam{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.fz-op{text-align:left;padding:14px;border:1.5px solid var(--line);border-radius:var(--rb);background:var(--bg);cursor:pointer;display:flex;flex-direction:column;gap:2px}
+.fz-op:hover{border-color:var(--gold)}
+.fz-op.on{border-color:var(--ink);background:color-mix(in srgb,var(--gold) 16%,#fff)}
+.fz-b{white-space:nowrap;align-self:flex-start;font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;background:var(--cream);margin-bottom:6px}
+.fz-op.on .fz-b{background:var(--ink);color:#fff}
+.fz-op b{font-size:15px}
+.fz-op small{font-size:12.5px;color:var(--ink3)}
+@media(max-width:520px){.fz-tam{grid-template-columns:1fr}.fz-op{flex-direction:row;align-items:center;gap:12px}.fz-b{margin:0;align-self:center}.fz-op small{display:none}}
+.fz-pref{display:flex;flex-wrap:wrap;gap:8px}
+.fz-pref button{flex:1;min-width:120px;white-space:nowrap;min-height:48px;padding:0 14px;border:1.5px solid var(--line);border-radius:var(--rb);background:var(--bg);font-weight:600;cursor:pointer}
+.fz-pref button:hover{border-color:var(--gold)}
+.fz-pref button.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.fz-papas{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border:1px solid var(--line);border-radius:var(--rb);background:var(--bg);cursor:pointer}
+.fz-papas[hidden]{display:none}
+.fz-papas small{display:block;font-size:12.5px;color:var(--ink3)}
+.fz-papas input{position:absolute;opacity:0;width:1px;height:1px}
+.fz-papas i{flex-shrink:0;width:46px;height:26px;border-radius:999px;background:var(--line);position:relative;transition:background .2s}
+.fz-papas i::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .2s}
+.fz-papas input:checked+i{background:var(--ok)}
+.fz-papas input:checked+i::after{transform:translateX(20px)}
+.fz-papas input:focus-visible+i{outline:3px solid var(--gold-d);outline-offset:2px}
+.fz-tk{border:1px solid var(--line);border-radius:var(--rb);padding:20px;background:var(--bg)}
+.fz-tk small{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-d)}
+.fz-tk h3{font:700 22px/1.2 var(--ft);margin:4px 0 14px}
+.fz-tk ul{list-style:none;display:grid;gap:8px}
+.fz-tk li{display:flex;justify-content:space-between;gap:10px;padding:10px 12px;background:var(--surface);border:1px solid var(--line);border-radius:var(--rb);font-size:14px;font-weight:500}
+.fz-tk li b{white-space:nowrap}
+.fz-tot{display:flex;justify-content:space-between;align-items:baseline;margin:16px 0 14px;padding:14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--rb);font-weight:600}
+.fz-tot b{font:700 30px var(--ft)}
+.fz-tk .btn{min-height:54px;border-radius:var(--rb)}
 
 /* PRODUCTOS */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;padding:18px 0 10px}
@@ -101,39 +141,22 @@ button,input,textarea{font:inherit;color:inherit}
 .ds{font-size:13px;color:var(--ink3);margin-top:2px}
 .pr{font-family:var(--ft);font-size:26px;font-weight:700;margin-top:auto;padding-top:8px;letter-spacing:.3px}
 .ctl{margin-top:8px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;width:100%;padding:0 16px;border-radius:12px;border:1px solid var(--ink);background:var(--ink);color:#fff;font-weight:600;cursor:pointer;text-decoration:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;width:100%;padding:0 16px;border-radius:var(--rb);border:1px solid var(--ink);background:var(--ink);color:#fff;font-weight:600;cursor:pointer;text-decoration:none}
 .btn:hover{background:var(--ink2)}
 .btn.sec{background:var(--surface);color:var(--ink)}
 .btn.sec:hover{background:var(--cream)}
 .btn[disabled]{opacity:.6;cursor:default}
-.step{display:flex;align-items:center;justify-content:space-between;height:46px;border:1px solid var(--ink);border-radius:12px;background:var(--surface)}
-.step button{width:50px;height:100%;background:none;border:0;font-size:22px;cursor:pointer;border-radius:12px}
+.step{display:flex;align-items:center;justify-content:space-between;height:46px;border:1px solid var(--ink);border-radius:var(--rb);background:var(--surface)}
+.step button{width:50px;height:100%;background:none;border:0;font-size:22px;cursor:pointer;border-radius:var(--rb)}
 .step button:hover{background:var(--cream)}
 .step output{font-weight:600;min-width:28px;text-align:center}
 .estado{text-align:center;color:var(--ink2);padding:60px 16px}
 .estado .btn{width:auto;margin-top:14px} .sk{pointer-events:none} .sk .ph::before{display:none} .sk .nm,.sk .pr{background:var(--line);border-radius:6px;color:transparent} .sk .nm{width:70%} .sk .pr{width:40%;height:26px;padding:0;margin-top:14px}
 
-/* IDEAS */
-.ideas{background:var(--ink);color:#FDF9F1;padding:56px 0;margin-top:40px}
-.ideas .kick{color:var(--gold)}
-.ideas h2,.faq h2{font:700 clamp(28px,6vw,40px)/1.1 var(--ft);margin-top:8px}
-.ideas h2 em{color:var(--gold)}
-.ideas .sub{color:#EFE0C2;margin-top:10px;max-width:52ch}
-.ideas-g{display:grid;gap:16px;margin-top:28px}
-@media(min-width:760px){.ideas-g{grid-template-columns:repeat(3,1fr)}}
-.ideas article{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--r);overflow:hidden}
-.ideas figure{aspect-ratio:4/3;background:linear-gradient(135deg,#5A2B18,#8C5E14)}
-.ideas figure img{display:block;width:100%;height:100%;object-fit:cover}
-.ideas article div{padding:16px 18px 20px}
-.ideas small{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
-.ideas h3{font:700 21px/1.2 var(--ft);margin:6px 0}
-.ideas p{color:#EFE0C2;font-size:14px}
-.ideas .btn{width:auto;margin-top:26px;padding:0 24px;background:var(--gold);border-color:var(--gold);color:var(--ink)}
-
 /* FAQ */
 .faq{padding:52px 0 10px}
 .faq-l{display:grid;gap:10px;max-width:720px;margin-top:20px}
-.faq details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:0 18px}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:var(--rb);padding:0 18px}
 .faq summary{min-height:54px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:600;cursor:pointer;list-style:none}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:'+';font-size:22px;color:var(--gold-d)}
@@ -156,22 +179,33 @@ button,input,textarea{font:inherit;color:inherit}
 @keyframes pop{0%{transform:scale(.4)}70%{transform:scale(1.25)}100%{transform:scale(1)}}
 
 /* PIE */
-.foot{padding:26px 16px 130px;text-align:center;font-size:13px;color:var(--ink3)}
-.foot b{color:var(--ink2)}
+.foot{background:var(--ink);color:#EFE0C2;padding:48px 0 130px;margin-top:56px;font-size:14px}
+.foot-a{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.12)}
+.foot-m{display:flex;align-items:center;gap:14px}
+.foot-m img{width:56px;height:56px;border-radius:50%;object-fit:cover}
+.foot-m b{display:block;font:700 22px/1.1 var(--ft);color:#fff}
+.foot-m small{display:block;font-size:12px;margin-top:2px}
+.foot-l{display:flex;flex-wrap:wrap;gap:18px}
+.foot-l a{color:#fff;text-decoration:none;font-weight:600}
+.foot-l a:hover{color:var(--gold)}
+.foot .chips{justify-content:flex-start;margin:20px 0 0}
+.foot .chips li>*{background:transparent;color:#EFE0C2;border-color:rgba(255,255,255,.22)}
+.foot-b{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-top:20px;font-size:12px}
+.cred b{color:#fff}
 .cred{display:inline-flex;align-items:center;gap:9px;margin-top:8px}
 .sw{width:30px;height:30px;flex-shrink:0;border-radius:9px;box-shadow:0 4px 10px -4px rgba(0,0,0,.5)}
 .sw-k{fill:#525252;transition:transform .5s cubic-bezier(.34,1.56,.64,1),fill .3s}
 .sw.on .sw-k{fill:#B8946A;transform:translateX(14px)}
 
 /* MODAL */
-dialog{width:min(560px,calc(100% - 20px));max-height:calc(100dvh - 20px);margin:auto;overflow:auto;border:0;border-radius:22px;padding:0;background:var(--bg);color:var(--ink)}
+dialog{width:min(560px,calc(100% - 20px));max-height:calc(100dvh - 20px);margin:auto;overflow:auto;border:0;border-radius:var(--rb);padding:0;background:var(--bg);color:var(--ink)}
 dialog::backdrop{background:rgba(54,21,9,.55)}
 dialog[open]{animation:up .25s ease-out}
 @keyframes up{from{transform:translateY(24px);opacity:0}}
-@media(max-width:600px){dialog{width:100%;max-width:100%;max-height:92dvh;margin:auto 0 0;border-radius:24px 24px 0 0}}
+@media(max-width:600px){dialog{width:100%;max-width:100%;max-height:92dvh;margin:auto 0 0;border-radius:var(--rb) 24px 0 0}}
 .dh{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 6px;position:sticky;top:0;background:var(--bg);z-index:1}
 .dh h2{font-family:var(--ft);font-size:24px;font-weight:700}
-.x{width:44px;height:44px;border:0;background:none;font-size:26px;cursor:pointer;border-radius:10px}
+.x{width:44px;height:44px;border:0;background:none;font-size:26px;cursor:pointer;border-radius:var(--rb)}
 .db{padding:6px 18px 22px}
 .item{display:grid;grid-template-columns:1fr 132px;gap:4px 12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
 .item .nm{grid-column:1}
@@ -185,7 +219,7 @@ dialog[open]{animation:up .25s ease-out}
 .prog{height:8px;margin-top:12px;background:var(--line);border-radius:999px;overflow:hidden}
 .prog i{display:block;height:100%;background:var(--ok);border-radius:999px;transition:width .4s}
 body.cerr main{position:relative}
-.cerrado{position:absolute;top:-18px;left:0;right:0;z-index:3;background:var(--surface);border:3px solid var(--gold);border-radius:16px;padding:34px 18px 18px;margin:0 auto;max-width:340px;text-align:center;transform:rotate(-1.2deg);transform-origin:50% -30px;box-shadow:0 18px 40px -10px rgba(54,21,9,.45);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.cerrado{position:absolute;top:-18px;left:0;right:0;z-index:3;background:var(--surface);border:3px solid var(--gold);border-radius:var(--rb);padding:34px 18px 18px;margin:0 auto;max-width:340px;text-align:center;transform:rotate(-1.2deg);transform-origin:50% -30px;box-shadow:0 18px 40px -10px rgba(54,21,9,.45);cursor:pointer;-webkit-tap-highlight-color:transparent}
 .cerrado.swing{animation:swing 1.6s cubic-bezier(.36,.07,.19,.97)}
 @keyframes swing{0%{transform:rotate(-1.2deg)}15%{transform:rotate(8deg)}35%{transform:rotate(-6deg)}55%{transform:rotate(3.5deg)}75%{transform:rotate(-2.5deg)}90%{transform:rotate(0)}100%{transform:rotate(-1.2deg)}}
 body.cerr .pasos{display:none}
@@ -201,12 +235,12 @@ body.cerr .grid{opacity:.55;filter:grayscale(.3)}
 .cerrado .hor span{font-weight:600;white-space:nowrap}
 .f{margin-top:14px;display:flex;flex-direction:column;gap:5px}
 .f label,.f legend{font-size:13px;font-weight:600}
-.f input[type=text],.f input[type=tel],.f textarea{width:100%;min-height:46px;padding:10px 14px;border:1px solid #DCCBA8;border-radius:12px;background:var(--surface)}
+.f input[type=text],.f input[type=tel],.f textarea{width:100%;min-height:46px;padding:10px 14px;border:1px solid #DCCBA8;border-radius:var(--rb);background:var(--surface)}
 fieldset.f{border:0;min-width:0}
 .opts{display:flex;gap:8px;flex-wrap:wrap}
 .opt{position:relative;flex:1;min-width:120px}
 .opt input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
-.opt span{display:flex;align-items:center;justify-content:center;min-height:46px;border:1px solid #DCCBA8;border-radius:12px;background:var(--surface);font-weight:500}
+.opt span{display:flex;align-items:center;justify-content:center;min-height:46px;border:1px solid #DCCBA8;border-radius:var(--rb);background:var(--surface);font-weight:500}
 .opt input:checked+span{border-color:var(--ink);background:var(--ink);color:#fff}
 .opt input:focus-visible+span{outline:3px solid var(--gold-d);outline-offset:2px}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
@@ -218,7 +252,7 @@ fieldset.f{border:0;min-width:0}
 .okv h3{font-family:var(--ft);font-size:28px;line-height:1.1;margin-bottom:4px}
 .okv p{color:var(--ink2);margin-top:6px}
 .okv .btn{margin-top:14px}
-.alias{display:flex;gap:8px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 8px 8px 14px;margin-top:10px}
+.alias{display:flex;gap:8px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--rb);padding:8px 8px 8px 14px;margin-top:10px}
 .alias b{flex:1;overflow-wrap:anywhere}
 .alias .btn{width:auto;min-height:40px;margin-top:0}
 
@@ -232,24 +266,113 @@ fieldset.f{border:0;min-width:0}
   @keyframes in{from{opacity:0;transform:translateY(14px)}}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+[hidden]{display:none!important}
+.btn.oro{background:var(--gold);border-color:var(--ink);color:var(--ink);font-weight:700}
+.btn.oro:hover{background:#F9C95E;transform:translateY(-2px)}
+.carro{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 16px;border:0;border-radius:var(--rb);background:var(--ink);color:#fff;font-weight:600;cursor:pointer;white-space:nowrap}
+.carro svg{width:20px;height:20px;color:var(--gold)}
+.carro b{color:var(--gold)}
+.carro i{font-style:normal;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:var(--gold);color:var(--ink);font-size:12px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+@media(max-width:520px){.carro .t,.carro b{display:none}.carro{padding:0 12px}}
+/* HISTORIA */
+.story{padding:72px 0}
+.story-g{display:grid;gap:40px;align-items:center}
+@media(min-width:860px){.story-g{grid-template-columns:1fr 1fr;gap:56px}.story-g.rev>div{order:2}}
+.story h2{font:700 clamp(32px,5vw,56px)/1.06 var(--ft);margin-top:14px;letter-spacing:-.5px;max-width:15ch}
+.story h2 em{font-style:italic;color:var(--gold-d)}
+.story .sub{margin-top:18px;max-width:46ch;line-height:1.7;color:var(--ink2)}
+.story hr{border:0;height:1px;background:currentColor;opacity:.2;margin:24px 0;max-width:280px}
+.story .nota{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.story .btn{width:auto;margin-top:26px;padding:0 24px;min-height:52px}
+.foto-s{position:relative;width:100%;max-width:460px;margin:0 auto}
+@media(min-width:860px){.foto-s{margin:0 0 0 auto}.story-g.rev .foto-s{margin:0 auto 0 0}}
+.fi{aspect-ratio:4/5;overflow:hidden;border-radius:var(--rb);background:linear-gradient(135deg,var(--cream),var(--gold))}
+.fi img{display:block;width:100%;height:100%;object-fit:cover}
+.foto-s figcaption{font-size:12px;color:var(--ink3);padding-top:10px}
+.sello{position:absolute;left:-10px;bottom:30px;background:var(--gold);color:var(--ink);padding:9px 12px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;line-height:1.35;border-radius:2px}
+.oscura{background:var(--ink);color:#FDF9F1}
+.oscura .kick,.oscura h2 em{color:var(--gold)}
+.oscura .sub{color:#EFE0C2}
+.oscura .foto-s figcaption{color:#D9C9B0}
+.oscura .btn.oro{border-color:var(--gold)}
+/* CATALOGO */
+.cat-h{padding-top:44px}
+.cat-h h2{font:700 clamp(28px,5vw,42px)/1.1 var(--ft);margin-top:8px}
+.filtros{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:18px 0 4px}
+.filtros::-webkit-scrollbar{display:none}
+.filtros button{flex-shrink:0;min-height:40px;padding:0 16px;border:1px solid var(--line);border-radius:var(--rb);background:var(--surface);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.filtros button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+.pr small{font:500 13px var(--fb);color:var(--ink3)}
+.cook{font-family:var(--fb);position:absolute;right:10px;bottom:10px;z-index:1;padding:7px 11px;border:0;border-radius:var(--rb);background:rgba(255,255,255,.94);font-size:12px;font-weight:600;cursor:pointer}
+.cook:hover{background:var(--gold)}
+.cook-l{display:grid;gap:10px;margin:12px 0 16px}
+.cook-l>div{padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--rb)}
+.cook-l p{font-size:14px;color:var(--ink2);margin-top:2px}
+/* IDEAS (pestañas) */
+.ideas{background:#EFE6D6;color:var(--ink);padding:64px 0;margin-top:40px}
+.ideas h2{font:700 clamp(28px,5vw,46px)/1.08 var(--ft);margin-top:10px;max-width:20ch}
+.ideas h2 em{font-style:italic;color:var(--gold-d)}
+.ideas .sub{color:var(--ink2);margin-top:10px;max-width:56ch}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 18px}
+.tabs button{min-height:46px;padding:0 18px;border:1px solid var(--ink);border-radius:var(--rb);background:transparent;font-weight:600;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--ink);color:#fff}
+.idea-p{display:grid;gap:24px;background:var(--surface);border:1px solid var(--line);border-radius:var(--rb);padding:18px;align-items:center}
+@media(min-width:800px){.idea-p{grid-template-columns:5fr 7fr;padding:24px;gap:36px}}
+.idea-p .fi{aspect-ratio:4/3}
+.idea-p small{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-d)}
+.idea-p h3{font:700 clamp(24px,3vw,32px)/1.15 var(--ft);margin:6px 0 10px}
+.idea-p p{color:var(--ink2);line-height:1.6}
+.tip{margin-top:14px;padding:12px 14px;background:var(--bg);border-left:3px solid var(--gold);font-size:14px}
+.kit{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.kit span{font-size:13px;color:var(--ink3)}
+.kit b{display:block;font-size:15px}
+.kit .btn{width:auto;padding:0 20px}
+/* FABRICA */
+.fab{padding:64px 0 10px}
+.fab-g{display:grid;gap:28px;align-items:start}
+@media(min-width:860px){.fab-g{grid-template-columns:1fr 1.1fr;gap:48px}}
+.fab h2{font:700 clamp(28px,5vw,44px)/1.1 var(--ft);margin-top:10px}
+.fab .sub{color:var(--ink2);margin-top:12px;max-width:44ch;line-height:1.6}
+.fab-c{background:var(--surface);border:1px solid var(--line);border-radius:var(--rb);padding:22px}
+.fab-c small{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-d)}
+.fab-c h3{font:700 24px/1.2 var(--ft);margin:4px 0 16px}
+.fab-d{display:grid;gap:10px;margin-bottom:16px}
+@media(min-width:520px){.fab-d{grid-template-columns:1fr 1fr}}
+.fab-d>div{padding:12px 14px;background:var(--bg);border:1px solid var(--line);border-radius:var(--rb)}
+.fab-d span{display:block;font-size:12px;color:var(--ink3);margin-bottom:2px}
+.fab-d b{display:block}
+.fab-d a{font-weight:700;color:var(--gold-d)}
+.fab-a{display:flex;flex-wrap:wrap;gap:10px}
+.fab-a .btn{width:auto;flex:1;min-width:180px}
+/* RECUADRO ARMA TU FREEZER */
+.fzdlg{width:min(1080px,calc(100% - 28px));max-height:calc(100dvh - 28px);border-radius:8px}
+.fz-top{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px;background:var(--bg);border-bottom:1px solid var(--line)}
+.fz-top small{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-d)}
+.fz-top h2{font:700 clamp(20px,3vw,26px)/1.2 var(--ft)}
+.fz-top .x{background:var(--cream);border-radius:50%}
+.fz-in{padding:16px 20px 24px}
+.fz-in .sub{color:var(--ink2)}
+.fzdlg .fz-box{box-shadow:none}
+@media(max-width:600px){.fzdlg{width:100%;max-width:100%;height:100dvh;max-height:100dvh;margin:0;border-radius:0}.fz-in{padding:14px 14px 24px}}
 </style>
 </head>
 <body>
 <nav class="top" aria-label="Principal">
   <a class="marca" href="#"><span id="nombre"></span><span><b>Mila <span class="amp">&amp;</span>Co.</b><span id="tag">Fábrica de Milanesas</span></span></a>
   <ul class="menu">
-    <li><a href="#catalogo">Milanesas</a></li>
-    <li><a href="#como">Cómo comprar</a></li>
-    <li><a href="#ideas">Ideas</a></li>
-    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#freezer" data-act="fz-abrir">Armá tu freezer</a></li>
+    <li><a href="#catalogo">Nuestras milas</a></li>
+    <li><a href="#ideas">Ideas para servir</a></li>
+    <li><a href="#fabrica">La fábrica</a></li>
   </ul>
-  <a class="wa-top" id="wa-top" target="_blank" rel="noopener" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.4L3 21z"/><path d="M9 9.5c.3 1.8 1.9 3.9 4.5 4.8l1.1-1.2 1.9.9c-.3 1-1.2 1.6-2.2 1.5C11.6 15.2 8.8 12.4 8.5 9.7 8.4 8.7 9 7.8 10 7.5l.9 1.9z"/></svg><span>Pedí por WhatsApp</span></a>
+  <button type="button" class="carro" data-act="carro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 11V7a4 4 0 0 0-8 0v4M5 9h14l1 12H4L5 9z"/></svg><span class="t">Mi pedido</span><b id="carro-t">$0</b><i id="carro-n" aria-label="productos">0</i></button>
 </nav>
 <header class="hero"><div class="hero-in">
   <div>
     <h1>Armá tu freezer <br class="bd">con milanesas <span class="hl"><em>listas para</em> cocinar.</span></h1>
     <p class="lead">Milanesas artesanales, congeladas y prácticas. Del freezer al plato, en pocos minutos.</p>
-    <div class="ctas"><a class="btn" href="#catalogo">Ver milanesas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn sec" href="#como">Cómo comprar</a></div>
+    <div class="ctas"><button type="button" class="btn oro" data-act="fz-abrir">Armá tu freezer <span aria-hidden="true">↗</span></button><a class="btn sec" href="#catalogo">Ver milanesas</a></div>
     <ul class="feats">
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7M9 4l3 2 3-2M9 20l3-2 3 2M4 10.5l3.4.5-1 3.3M20 13.5l-3.4-.5 1-3.3M4 13.5l3.4-.5-1-3.3M20 10.5l-3.4.5 1 3.3"/></svg><span>Congeladas<br>al instante</span></li>
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 5-14 15-15-1 10-7 15-15 15z"/><path d="M5 19l8-8"/></svg><span>Receta<br>artesanal</span></li>
@@ -268,7 +391,20 @@ fieldset.f{border:0;min-width:0}
     <li><b>3</b><span>Te confirmamos por WhatsApp</span></li>
   </ol>
 </div>
+<section class="story oscura" aria-label="La historia de Mila &amp; Co."><div class="wrap story-g">
+  <div>
+    <p class="kick">De nuestra fábrica a tu mesa · Olavarría</p>
+    <h2>Hay días que se resuelven con <em>una buena mila.</em></h2>
+    <p class="sub">Para el almuerzo del martes, la cena rápida del jueves o ese antojo que aparece sin avisar. Tener milanesas listas cambia el plan.</p>
+    <hr>
+    <p class="nota">Del freezer al plato. Sin vueltas.</p>
+    <button type="button" class="btn oro" data-act="fz-abrir">Armá tu freezer <span aria-hidden="true">↗</span></button>
+  </div>
+  <figure class="foto-s"><div class="fi"><img src="img/idea-clasica.webp" alt="Milanesa dorada recién preparada" width="800" height="1000" loading="lazy" onerror="this.remove()"></div><figcaption>Un clásico que siempre tiene lugar.</figcaption><span class="sello">Mila &amp; Co.<br>Hecho en<br>Olavarría</span></figure>
+</div></section>
 <main class="wrap" id="catalogo">
+  <div class="cat-h"><p class="kick">Fábrica directa · Precio por kilo</p><h2>Elegí tus milanesas favoritas</h2></div>
+  <div class="filtros" id="filtros" aria-label="Filtrar por tipo" hidden></div>
   <div class="cerrado" id="cerrado" role="status" hidden></div>
   <div class="buscar" id="buscar" hidden><label class="sr" for="q">Buscar producto</label><input type="search" id="q" placeholder="Buscar producto..." autocomplete="off"></div>
   <div id="estado" class="estado" role="status" hidden></div>
@@ -277,14 +413,36 @@ fieldset.f{border:0;min-width:0}
 </main>
 <section class="ideas" id="ideas"><div class="wrap">
   <p class="kick">Ideas Mila &amp; Co</p>
-  <h2>3 formas de comer una <em>misma milanesa</em></h2>
+  <h2>Una milanesa, <em>distintas formas de disfrutarla.</em></h2>
   <p class="sub">Con una bolsa en el freezer resolvés el almuerzo del martes, la cena rápida del jueves y el antojo del viernes.</p>
-  <div class="ideas-g">
-    <article><figure><img src="img/idea-clasica.webp" alt="Milanesa al plato con puré y limón" width="1000" height="750" loading="lazy" onerror="this.remove()"></figure><div><small>01 · Al plato</small><h3>Clásica con puré y limón</h3><p>Al horno bien caliente y el limón recién en el plato, así el rebozado sigue crocante.</p></div></article>
-    <article><figure><img src="img/idea-napolitana.webp" alt="Milanesa a la napolitana gratinada" width="1000" height="750" loading="lazy" onerror="this.remove()"></figure><div><small>02 · Para la cena</small><h3>A la napolitana</h3><p>Cuando le falten unos minutos: salsa de tomate, muzzarella y orégano. Gratinala con el grill.</p></div></article>
-    <article><figure><img src="img/idea-sandwich.webp" alt="Sándwich de milanesa en pan ciabatta" width="1000" height="750" loading="lazy" onerror="this.remove()"></figure><div><small>03 · Para el antojo</small><h3>Sándwich bien armado</h3><p>En pan ciabatta tostado, con lechuga, tomate y mayonesa de ajo.</p></div></article>
+  <div class="tabs" id="tabs" role="tablist" aria-label="Ideas para servir"></div>
+  <div class="idea-p" id="idea-p" role="tabpanel"></div>
+</div></section>
+<section class="story" aria-label="Del freezer al plato"><div class="wrap story-g rev">
+  <div>
+    <p class="kick">Un poco de oficio. Mucho de cuidado.</p>
+    <h2>Del freezer al plato. <em>Así de simple.</em></h2>
+    <p class="sub">No hace falta descongelar. Sacás las que vas a cocinar, las preparás y listo. Para eso están: para hacerte más fácil la comida de todos los días.</p>
+    <hr>
+    <p class="nota">Elegí · Cociná · Disfrutá</p>
   </div>
-  <a class="btn" href="#catalogo">Elegir mis milanesas</a>
+  <figure class="foto-s"><div class="fi"><img src="img/idea-napolitana.webp" alt="Milanesa a la napolitana" width="800" height="1000" loading="lazy" onerror="this.remove()"></div><figcaption>Una napolitana para la cena del viernes.</figcaption></figure>
+</div></section>
+<section class="fab" id="fabrica"><div class="wrap fab-g">
+  <div>
+    <p class="kick">La fábrica</p>
+    <h2>Pasá a buscarlas o te las llevamos.</h2>
+    <p class="sub">Retirá tu pedido en la fábrica o coordinamos el envío en moto hasta tu casa.</p>
+  </div>
+  <div class="fab-c">
+    <small>Fábrica y punto de retiro</small>
+    <h3>Av. Colón 2832, Olavarría</h3>
+    <div class="fab-d">
+      <div><span>Horario de atención</span><b>Lun a Sáb: 8:30 a 13 hs</b><b>y 17 a 21 hs</b></div>
+      <div><span>Instagram</span><a href="https://instagram.com/milayco.f" target="_blank" rel="noopener">@milayco.f</a></div>
+    </div>
+    <div class="fab-a"><a class="btn" id="wa-top" target="_blank" rel="noopener" hidden>Escribinos por WhatsApp</a><a class="btn sec" href="https://www.google.com/maps/search/?api=1&amp;query=Av.%20Col%C3%B3n%202832%2C%20Olavarr%C3%ADa" target="_blank" rel="noopener">Cómo llegar</a></div>
+  </div>
 </div></section>
 <section class="faq" id="faq"><div class="wrap">
   <p class="kick">Preguntas frecuentes</p>
@@ -297,9 +455,43 @@ fieldset.f{border:0;min-width:0}
     <details><summary>¿Cómo pago?</summary><p>Efectivo o transferencia. Simple, como tiene que ser una buena mila.</p></details>
   </div>
 </div></section>
-<footer class="foot" id="contacto"><ul class="chips" id="chips"></ul><p id="foot-n"></p><p class="cred"><svg class="sw" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#111"/><rect x="7" y="14.5" width="26" height="11" rx="5.5" fill="none" stroke="#B8946A" stroke-width="1.8"/><circle class="sw-k" cx="13" cy="20" r="3.6"/></svg><span>Tienda hecha con <b>Switch Gestión</b></span></p></footer>
+<footer class="foot" id="contacto"><div class="wrap">
+  <div class="foot-a">
+    <div class="foot-m"><img src="logo.webp" alt="" width="56" height="56" loading="lazy"><div><b>Mila <span class="amp">&amp;</span>Co.</b><small>Fábrica de milanesas artesanales</small><small>Av. Colón 2832 · Olavarría</small></div></div>
+    <nav class="foot-l" aria-label="Pie"><a href="#freezer" data-act="fz-abrir">Armá tu freezer</a><a href="#catalogo">Nuestras milas</a><a href="#ideas">Ideas para servir</a><a href="https://instagram.com/milayco.f" target="_blank" rel="noopener">@milayco.f</a></nav>
+  </div>
+  <ul class="chips" id="chips"></ul>
+  <div class="foot-b"><p id="foot-n"></p><p class="cred"><svg class="sw" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#111"/><rect x="7" y="14.5" width="26" height="11" rx="5.5" fill="none" stroke="#B8946A" stroke-width="1.8"/><circle class="sw-k" cx="13" cy="20" r="3.6"/></svg><span>Tienda hecha con <b>Switch Gestión</b></span></p></div>
+</div></footer>
 <div class="bar" id="bar" hidden><button type="button" class="btn" data-act="abrir" id="bar-btn"></button></div>
 
+<dialog id="fzdlg" class="fzdlg" aria-labelledby="fz-t">
+  <div class="fz-top"><div><small>Mila &amp; Co. · Fábrica de milanesas</small><h2 id="fz-t">Empecemos por tu freezer.</h2></div><button type="button" class="x" data-act="fz-cerrar" aria-label="Cerrar">×</button></div>
+  <div class="fz-in">
+    <p class="sub">Decinos para cuántos es y qué te gusta. Te armamos el combo y lo sumás con un toque.</p>
+  <div class="fz-box">
+    <div>
+      <p class="fz-l">1. ¿Para cuántos calculamos?</p>
+      <div class="fz-tam" id="fz-tam"></div>
+      <p class="fz-l">2. ¿Qué preferís?</p>
+      <div class="fz-pref" id="fz-pref"></div>
+      <label class="fz-papas" id="fz-papas-w" hidden><span><b>¿Sumamos papas?</b><small id="fz-papas-n"></small></span><input type="checkbox" id="fz-papas"><i aria-hidden="true"></i></label>
+    </div>
+    <div class="fz-tk" id="fz-tk" aria-live="polite"></div>
+  </div>
+  </div>
+</dialog>
+<dialog id="cookdlg" aria-labelledby="cook-t">
+  <div class="dh"><h2 id="cook-t">Cómo cocinarla</h2><button type="button" class="x" data-act="cook-cerrar" aria-label="Cerrar">×</button></div>
+  <div class="db">
+    <p class="aviso">No hace falta descongelar: del freezer directo a la cocción.</p>
+    <div class="cook-l">
+      <div><b>Horno</b><p>A temperatura media y precalentado, unos 8 a 10 minutos de cada lado (16 a 20 en total) o hasta que estén doradas.</p></div>
+      <div><b>Airfryer</b><p>Precalentada a 190 °C, de 12 a 15 minutos, dándolas vuelta a la mitad.</p></div>
+    </div>
+    <button type="button" class="btn" data-act="cook-cerrar">¡Entendido, a cocinar!</button>
+  </div>
+</dialog>
 <dialog id="dlg" aria-labelledby="dlg-t">
   <div class="dh"><h2 id="dlg-t">Tu pedido</h2><button type="button" class="x" data-act="cerrar" aria-label="Cerrar">×</button></div>
   <div class="db" id="dlg-body"></div>
@@ -315,7 +507,7 @@ const TEMA={
   borde:'#EFE0C2',
   fuenteTitulos:'Playfair Display',
   fuenteTexto:'Inter',
-  radio:20,
+  radio:4,
   logo:'logo.webp'
 };
 const API_URL='https://script.google.com/macros/s/AKfycbyCCrn_26h_8Ce5Osj0oYeGmaUR4IqyNZ41ntVIHeKhIVSW669CorLQdEgO-FKKQ716/exec';
@@ -396,18 +588,20 @@ function ctl(p){
 function cardHTML(p,i){
   const ini=esc((p.n.replace(/^[^A-Za-zÀ-ÿ0-9]+/,'').charAt(0)||'?').toUpperCase());
   const img=p.foto?'<img src="'+esc(p.foto)+'" alt="" loading="lazy" onerror="this.remove()">':'';
-  return '<article class="card'+(CART[p.id]?' en':'')+'" style="--i:'+Math.min(i,8)+'"><div class="ph" aria-hidden="true">'+ini+img+'</div><div class="cb"><div class="nm">'+esc(p.n)+'</div>'+(p.desc?'<div class="ds">'+esc(p.desc)+'</div>':'')+'<div class="pr">'+ar(p.p)+'</div><div class="ctl" id="ctl-'+esc(p.id)+'">'+ctl(p)+'</div></div></article>';
+  const ck=grupo(p)!=='guarn'?'<button type="button" class="cook" data-act="cocina" data-id="'+esc(p.id)+'">Cómo cocinarla</button>':'';
+  return '<article class="card'+(CART[p.id]?' en':'')+'" style="--i:'+Math.min(i,8)+'"><div class="ph"><span aria-hidden="true">'+ini+'</span>'+img+ck+'</div><div class="cb"><div class="nm">'+esc(p.n)+'</div>'+(p.desc?'<div class="ds">'+esc(p.desc)+'</div>':'')+'<div class="pr">'+ar(p.p)+'<small> / kg</small></div><div class="ctl" id="ctl-'+esc(p.id)+'">'+ctl(p)+'</div></div></article>';
 }
 function pintarGrid(){
   const q=($('q').value||'').trim().toLowerCase();
-  const l=PRODS.filter(p=>!q||p.n.toLowerCase().includes(q)||(p.desc||'').toLowerCase().includes(q));
+  const l=PRODS.filter(p=>(FILT==='todos'||grupo(p)===FILT)&&(!q||p.n.toLowerCase().includes(q)||(p.desc||'').toLowerCase().includes(q)));
   const g=$('grid');
-  if(!l.length){g.hidden=true;$('estado').hidden=false;$('estado').textContent=PRODS.length?'Ningún producto coincide con la búsqueda.':'Todavía no hay productos disponibles.';return;}
+  if(!l.length){g.hidden=true;$('estado').hidden=false;$('estado').textContent=PRODS.length?'Ningún producto coincide con lo que buscás.':'Todavía no hay productos disponibles.';return;}
   $('estado').hidden=true;g.hidden=false;
   g.innerHTML=l.map((p,i)=>cardHTML(p,i)).join('');
 }
 function pintarBarra(){
   const n=cant(),b=$('bar');
+  $('carro-t').textContent=ar(total());$('carro-n').textContent=n;
   b.hidden=!n||!TIENDA.abierto;
   if(n)$('bar-btn').innerHTML='<span class="izq"><span class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2 3h2l2.4 12.4a2 2 0 0 0 2 1.6h9.2a2 2 0 0 0 2-1.6L22 7H6"/></svg><i aria-hidden="true">'+n+'</i></span><span>Ver pedido<span class="sr"> ('+n+(n===1?' producto':' productos')+')</span></span></span><b>'+ar(total())+'</b>';
 }
@@ -542,18 +736,30 @@ function aplicar(d){
   $('foot-n').textContent=NEG.nombre?'© '+new Date().getFullYear()+' '+NEG.nombre:'';
   $('buscar').hidden=PRODS.length<=8;
   pintarCerrado();
-  pintarGrid();pintarBarra();
+  pintarFiltros();pintarGrid();pintarBarra();pintarFreezer();pintarIdea(IDEA);
+  if(!FZ_AUTO){FZ_AUTO=1;if(FZ_OK&&TIENDA.abierto&&!leer('fz-visto'))setTimeout(()=>{if(!$('dlg').open&&!$('cookdlg').open)fzAbrir();},600);}
 }
 
 document.addEventListener('click',ev=>{
   const b=ev.target.closest('[data-act]');
-  if(!b){if(ev.target===$('dlg'))$('dlg').close();return;}
+  if(!b){['dlg','fzdlg','cookdlg'].forEach(k=>{if(ev.target===$(k))$(k).close();});return;}
   const a=b.dataset.act,id=b.dataset.id;
   if(a==='add'||a==='inc')cambiar(id,1);
   else if(a==='dec')cambiar(id,-1);
   else if(a==='abrir')abrir();
   else if(a==='cerrar')$('dlg').close();
   else if(a==='reintentar')cargar();
+  else if(a==='fz-kg'){FZ.kg=+id;pintarFreezer();}
+  else if(a==='fz-pref'){FZ.pref=id;pintarFreezer();}
+  else if(a==='fz-sumar')fzSumar();
+  else if(a==='fz-abrir'){ev.preventDefault();fzAbrir();}
+  else if(a==='fz-cerrar')$('fzdlg').close();
+  else if(a==='carro'){if(cant())abrir();else $('catalogo').scrollIntoView();}
+  else if(a==='filtro'){FILT=id;pintarFiltros();pintarGrid();}
+  else if(a==='cocina'){const p=prod(id);$('cook-t').textContent=p?p.n:'Cómo cocinarla';$('cookdlg').showModal();}
+  else if(a==='cook-cerrar')$('cookdlg').close();
+  else if(a==='idea'){IDEA=+id;pintarIdea(IDEA);}
+  else if(a==='kit')sumarKit(+id);
   else if(a==='copiar'){
     const v=$('alias-v').textContent;
     (navigator.clipboard?navigator.clipboard.writeText(v):Promise.reject()).then(()=>{b.textContent='¡Copiado!';},()=>{b.textContent='Copialo a mano';});
@@ -562,6 +768,7 @@ document.addEventListener('click',ev=>{
 document.addEventListener('submit',ev=>{if(ev.target.id==='form')enviar(ev);});
 document.addEventListener('change',ev=>{
   const t=ev.target;
+  if(t.id==='fz-papas'){FZ.papas=t.checked;pintarFreezer();}
   if(t.name==='entrega'){
     const envio=t.value==='Envío';
     $('dir-wrap').hidden=!envio;$('f-dir').required=envio;
@@ -580,6 +787,85 @@ $('q').addEventListener('input',pintarGrid);
   c.addEventListener('click',hamaca);
   c.addEventListener('animationend',()=>c.classList.remove('swing'));
 })();
+let FZ={kg:3,pref:'mix',papas:false};
+const FZ_T=[{kg:2,n:'Para la semana',d:'Ideal para 2 personas'},{kg:3,n:'Pack familiar',d:'Para toda la familia'},{kg:5,n:'Freezer lleno',d:'Para tener siempre a mano'}];
+const FZ_P=[{v:'mix',n:'Mix completo',c:['carne','pollo','cerdo']},{v:'carne',n:'Solo carne',c:['carne']},{v:'pollo',n:'Solo pollo',c:['pollo']},{v:'cerdo',n:'Cerdo y pollo',c:['cerdo','pollo']}];
+function catDe(n){
+  n=String(n).toLowerCase();
+  if(/papa/.test(n))return 'papas';
+  if(/pollo|suprema|pechuga/.test(n))return 'pollo';
+  if(/cerdo|carr[eé]|bondiola|matambrito/.test(n))return 'cerdo';
+  if(/carne|nalga|peceto|cuadrada|bola|lomo|ternera|vacuna/.test(n))return 'carne';
+  return 'otro';
+}
+function fzCats(){const o={};PRODS.forEach(p=>{const c=catDe(p.n);(o[c]=o[c]||[]).push(p);});return o;}
+function fzCombo(){
+  const C=fzCats(),pref=FZ_P.find(x=>x.v===FZ.pref);
+  let cs=(pref?pref.c:[]).filter(c=>C[c]);
+  if(!cs.length)cs=['carne','pollo','cerdo','otro'].filter(c=>C[c]);
+  const it={},idx={};
+  for(let i=0;i<FZ.kg;i++){const c=cs[i%cs.length],l=C[c],k=idx[c]||0,p=l[k%l.length];idx[c]=k+1;it[p.id]=(it[p.id]||0)+1;}
+  if(FZ.papas&&C.papas)it[C.papas[0].id]=(it[C.papas[0].id]||0)+1;
+  return Object.keys(it).map(id=>({p:prod(id),q:it[id]}));
+}
+function pintarFreezer(){
+  const C=fzCats(),hay=['carne','pollo','cerdo','otro'].some(c=>C[c]);
+  FZ_OK=hay;if(!hay)return;
+  const prefs=FZ_P.filter(x=>x.v==='mix'||C[x.c[0]]);
+  if(!prefs.some(x=>x.v===FZ.pref))FZ.pref='mix';
+  conFoco($('fz-tam'),FZ_T.map(t=>'<button type="button" class="fz-op'+(t.kg===FZ.kg?' on':'')+'" data-act="fz-kg" data-id="'+t.kg+'" aria-pressed="'+(t.kg===FZ.kg)+'"><span class="fz-b">'+t.kg+' kg</span><b>'+t.n+'</b><small>'+t.d+'</small></button>').join(''));
+  conFoco($('fz-pref'),prefs.map(x=>'<button type="button" class="'+(x.v===FZ.pref?'on':'')+'" data-act="fz-pref" data-id="'+x.v+'" aria-pressed="'+(x.v===FZ.pref)+'">'+x.n+'</button>').join(''));
+  $('fz-papas-w').hidden=!C.papas;
+  if(C.papas)$('fz-papas-n').textContent=C.papas[0].n+' · '+ar(C.papas[0].p);
+  $('fz-papas').checked=FZ.papas&&!!C.papas;
+  const its=fzCombo(),tot=its.reduce((a,x)=>a+x.p.p*x.q,0),t=FZ_T.find(x=>x.kg===FZ.kg);
+  $('fz-tk').innerHTML='<small>Tu combo recomendado</small><h3>'+esc(t.n)+' ('+FZ.kg+' kg)</h3><ul>'+its.map(x=>'<li><span>'+x.q+' kg · '+esc(x.p.n)+'</span><b>'+ar(x.p.p*x.q)+'</b></li>').join('')+'</ul><div class="fz-tot"><span>Total</span><b>'+ar(tot)+'</b></div>'+(TIENDA.abierto?'<button type="button" class="btn" data-act="fz-sumar">Sumar al pedido</button>':'<button type="button" class="btn" disabled>Ahora estamos cerrados</button>');
+}
+function fzSumar(){
+  if($('fzdlg').open)$('fzdlg').close();
+  const its=fzCombo();
+  its.forEach(x=>{CART[x.p.id]=Math.min(50,(CART[x.p.id]||0)+x.q);});
+  guardar(KEY,CART);
+  track('AddToCart',{content_ids:its.map(x=>x.p.id),content_type:'product',value:its.reduce((a,x)=>a+x.p.p*x.q,0),currency:'ARS'});
+  pintarGrid();pintarBarra();abrir();
+}
+let FZ_OK=false,FZ_AUTO=0,FILT='todos',IDEA=0;
+function fzAbrir(){
+  guardar('fz-visto',1);
+  if(!FZ_OK){$('catalogo').scrollIntoView();return;}
+  pintarFreezer();if(!$('fzdlg').open)$('fzdlg').showModal();
+}
+const grupo=p=>{const c=catDe(p.n);return c==='papas'?'guarn':c;};
+function pintarFiltros(){
+  const N={todos:'Todas',carne:'Carne',pollo:'Pollo',cerdo:'Cerdo',guarn:'Guarniciones'};
+  const hay=Object.keys(N).filter(k=>k==='todos'||PRODS.some(p=>grupo(p)===k));
+  if(!hay.includes(FILT))FILT='todos';
+  $('filtros').hidden=hay.length<3;
+  conFoco($('filtros'),hay.map(k=>'<button type="button" data-act="filtro" data-id="'+k+'" aria-pressed="'+(k===FILT)+'">'+N[k]+'</button>').join(''));
+}
+const IDEAS=[
+  {t:'Al plato',tag:'01 · Al plato',h:'Clásica con puré y limón',d:'Al horno bien caliente y el limón recién en el plato, así el rebozado sigue crocante.',tip:'El limón, recién al servir: así el rebozado se mantiene crocante.',img:'img/idea-clasica.webp',alt:'Milanesa al plato con puré y limón',kit:['carne','papas']},
+  {t:'A la napolitana',tag:'02 · Para la cena',h:'A la napolitana',d:'Cuando le falten unos minutos: salsa de tomate, muzzarella y orégano. Gratinala con el grill.',tip:'Los últimos minutos con el grill bien fuerte, para que el queso burbujee.',img:'img/idea-napolitana.webp',alt:'Milanesa a la napolitana gratinada',kit:['carne','pollo']},
+  {t:'En sándwich',tag:'03 · Para el antojo',h:'Sándwich bien armado',d:'En pan ciabatta tostado, con lechuga, tomate y mayonesa de ajo.',tip:'Tostá apenas la miga del pan antes de armarlo.',img:'img/idea-sandwich.webp',alt:'Sándwich de milanesa en pan ciabatta',kit:['pollo','cerdo']}
+];
+function kitDe(i){
+  const C=fzCats(),out=[];
+  IDEAS[i].kit.forEach(c=>{const p=C[c]&&C[c][0];if(p&&!out.includes(p))out.push(p);});
+  return out;
+}
+function pintarIdea(i){
+  conFoco($('tabs'),IDEAS.map((x,k)=>'<button type="button" role="tab" data-act="idea" data-id="'+k+'" aria-selected="'+(k===i)+'" aria-controls="idea-p">'+x.t+'</button>').join(''));
+  const x=IDEAS[i],k=kitDe(i),tot=k.reduce((a,p)=>a+p.p,0);
+  const kit=k.length?'<div class="kit"><div><span>Kit sugerido</span><b>'+k.map(p=>'1 kg '+esc(p.n)).join(' + ')+' · '+ar(tot)+'</b></div>'+(TIENDA.abierto?'<button type="button" class="btn" data-act="kit" data-id="'+i+'">Sumar este kit</button>':'')+'</div>':'';
+  $('idea-p').innerHTML='<div class="fi"><img src="'+x.img+'" alt="'+esc(x.alt)+'" loading="lazy" onerror="this.remove()"></div><div><small>'+x.tag+'</small><h3>'+x.h+'</h3><p>'+x.d+'</p><p class="tip">'+x.tip+'</p>'+kit+'</div>';
+}
+function sumarKit(i){
+  const k=kitDe(i);if(!k.length)return;
+  k.forEach(p=>{CART[p.id]=Math.min(50,(CART[p.id]||0)+1);});
+  guardar(KEY,CART);
+  track('AddToCart',{content_ids:k.map(p=>p.id),content_type:'product',value:k.reduce((a,p)=>a+p.p,0),currency:'ARS'});
+  pintarGrid();pintarBarra();abrir();
+}
 function volar(id){
   if(matchMedia('(prefers-reduced-motion: reduce)').matches||!Element.prototype.animate)return;
   const c=$('ctl-'+id),bb=$('bar-btn');if(!c||$('bar').hidden)return;
