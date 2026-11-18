@@ -235,6 +235,9 @@ body.cerr .grid{opacity:.55;filter:grayscale(.3)}
 .cerrado .hor span{font-weight:600;white-space:nowrap}
 .f{margin-top:14px;display:flex;flex-direction:column;gap:5px}
 .f label,.f legend{font-size:13px;font-weight:600}
+.f select{width:100%;min-height:46px;padding:10px 14px;margin-top:8px;border:1px solid #DCCBA8;border-radius:var(--rb);background:var(--surface);font:inherit;color:inherit}
+body.progr .cerrado{position:relative;top:auto;margin:44px auto 8px}
+.pprog{margin-top:12px;padding-top:12px;border-top:1px dashed var(--gold);font-weight:600;color:var(--ok)}
 .f input[type=text],.f input[type=tel],.f textarea{width:100%;min-height:46px;padding:10px 14px;border:1px solid #DCCBA8;border-radius:var(--rb);background:var(--surface)}
 fieldset.f{border:0;min-width:0}
 .opts{display:flex;gap:8px;flex-wrap:wrap}
@@ -558,15 +561,18 @@ function horariosAgrupados(h){
 function pintarCerrado(){
   const el=$('cerrado');
   el.hidden=TIENDA.abierto;
-  document.body.classList.toggle('cerr',!TIENDA.abierto);
+  document.body.classList.toggle('cerr',!puede());
+  document.body.classList.toggle('progr',!TIENDA.abierto&&puede());
   if(TIENDA.abierto){el.innerHTML='';return;}
   const msg=TIENDA.msg||'Estamos cerrados por ahora.';
   const vuelve=(msg.match(/(Abrimos .*)$/)||[])[1]||'';
   const hs=horariosAgrupados(TIENDA.horarios);
   el.innerHTML='<small>Lo sentimos, estamos</small><h2>CERRADO</h2>'
     +(vuelve?'<div class="vuelve">'+esc(vuelve.replace(/^Abrimos/,'Volvemos'))+'</div>':'<div class="vuelve">'+esc(msg)+'</div>')
-    +(hs.length?'<div class="hor"><b>Horario de atención</b>'+hs.map(x=>'<div>'+esc(x.d)+'<span>'+esc(x.v)+'</span></div>').join('')+'</div>':'');
+    +(hs.length?'<div class="hor"><b>Horario de atención</b>'+hs.map(x=>'<div>'+esc(x.d)+'<span>'+esc(x.v)+'</span></div>').join('')+'</div>':'')
+    +(puede()?'<p class="pprog">Igual podés hacer tu pedido y programarlo para cuando abramos.</p>':'');
 }
+const puede=()=>TIENDA.abierto||(TIENDA.turnos||[]).length>0;
 
 function conFoco(el,html){
   const a=document.activeElement,k=a&&a.dataset&&a.dataset.act&&el.contains(a)?[a.dataset.act,a.dataset.id]:null;
@@ -580,7 +586,7 @@ function stepper(id,q,nombre){
   return '<div class="step" role="group" aria-label="Cantidad de '+esc(nombre)+'"><button type="button" data-act="dec" data-id="'+esc(id)+'" aria-label="Quitar uno">−</button><output aria-live="polite">'+q+'</output><button type="button" data-act="inc" data-id="'+esc(id)+'" aria-label="Agregar uno">+</button></div>';
 }
 function ctl(p){
-  if(!TIENDA.abierto)return '<button type="button" class="btn" disabled>Cerrado</button>';
+  if(!puede())return '<button type="button" class="btn" disabled>Cerrado</button>';
   const q=CART[p.id]||0;
   return q?stepper(p.id,q,p.n):'<button type="button" class="btn" data-act="add" data-id="'+esc(p.id)+'">Agregar<span class="sr"> '+esc(p.n)+'</span></button>';
 }
@@ -602,7 +608,7 @@ function pintarGrid(){
 function pintarBarra(){
   const n=cant(),b=$('bar');
   $('carro-t').textContent=ar(total());$('carro-n').textContent=n;
-  b.hidden=!n||!TIENDA.abierto;
+  b.hidden=!n||!puede();
   if(n)$('bar-btn').innerHTML='<span class="izq"><span class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2 3h2l2.4 12.4a2 2 0 0 0 2 1.6h9.2a2 2 0 0 0 2-1.6L22 7H6"/></svg><i aria-hidden="true">'+n+'</i></span><span>Ver pedido<span class="sr"> ('+n+(n===1?' producto':' productos')+')</span></span></span><b>'+ar(total())+'</b>';
 }
 function pintarResumen(){
@@ -624,7 +630,7 @@ function cambiar(id,d){
 }
 
 function abrir(){
-  if(!TIENDA.abierto)return;
+  if(!puede())return;
   const g=leer(KEY+':cli')||{};
   $('dlg-t').textContent='Tu pedido';
   $('dlg-body').innerHTML=
@@ -636,6 +642,7 @@ function abrir(){
     '<label class="opt"><input type="radio" name="entrega" value="Retiro" required><span>Retiro en el local</span></label>'+
     '<label class="opt"><input type="radio" name="entrega" value="Envío"><span>Envío a domicilio</span></label></div></fieldset>'+
   '<div class="f" id="dir-wrap" hidden><label for="f-dir">Dirección de entrega</label><input type="text" id="f-dir" maxlength="150" autocomplete="street-address" placeholder="Calle, número, barrio" value="'+esc(g.direccion||'')+'"><p class="aviso">El costo del envío no está incluido: lo coordina y cobra directamente el delivery.</p></div>'+
+  cuandoHTML()+
   '<fieldset class="f"><legend>¿Cómo pagás?</legend><div class="opts">'+
     '<label class="opt"><input type="radio" name="pago" value="Efectivo" required><span>Efectivo</span></label>'+
     '<label class="opt"><input type="radio" name="pago" value="Transferencia"><span>Transferencia</span></label></div>'+
@@ -652,10 +659,20 @@ function abrir(){
   $('dlg').showModal();
 }
 
+function cuandoHTML(){
+  const tu=TIENDA.turnos||[],ab=TIENDA.abierto;
+  if(!tu.length)return '';
+  const op='<option value="">Elegí día y horario</option>'+tu.map(x=>'<option value="'+esc(x.v)+'">'+esc(x.d+' · '+x.h)+'</option>').join('');
+  return '<fieldset class="f"><legend>¿Para cuándo lo querés?</legend>'+
+    (ab?'<div class="opts"><label class="opt"><input type="radio" name="cuando" value="ya" checked><span>Lo antes posible</span></label><label class="opt"><input type="radio" name="cuando" value="prog"><span>Programar</span></label></div>'
+       :'<p class="aviso">Ahora estamos cerrados: elegí cuándo querés que lo preparemos.</p>')+
+    '<label class="sr" for="f-prog">Día y horario</label><select id="f-prog"'+(ab?' hidden':' required')+'>'+op+'</select></fieldset>';
+}
 function textoWA(d,c){
   const L=['Hola! Hice el pedido *'+d.id+'* en '+(NEG.nombre||'la tienda')+':',''];
   d.items.forEach(it=>L.push('• '+it.q+' x '+it.n+' — '+ar(it.p*it.q)));
   L.push('','*Total productos: '+ar(d.total)+'*','Entrega: '+c.entrega+(c.entrega==='Envío'?' a '+c.direccion+' (envío a coordinar con el delivery)':''),'Pago: '+c.pago,'A nombre de: '+c.cliente);
+  if(c.progTxt)L.push('Programado para: '+c.progTxt);
   if(c.nota)L.push('Nota: '+c.nota);
   return L.join('\n');
 }
@@ -664,7 +681,7 @@ function vistaOk(d,c){
   const wa=NEG.wa?'<a class="btn" target="_blank" rel="noopener" href="https://wa.me/'+esc(NEG.wa)+'?text='+encodeURIComponent(textoWA(d,c))+'">Confirmar por WhatsApp</a>':'';
   const alias=(c.pago==='Transferencia'&&NEG.alias)?'<p>Alias para transferir:</p><div class="alias"><b id="alias-v">'+esc(NEG.alias)+'</b><button type="button" class="btn sec" data-act="copiar">Copiar</button></div>':'';
   $('dlg-body').innerHTML='<div class="okv"><div class="okic" aria-hidden="true">✓</div><h3>¡Recibimos tu pedido '+esc(d.id)+'!</h3>'+
-    '<p>Total productos: <b>'+ar(d.total)+'</b>'+(c.entrega==='Envío'?'. El envío se coordina aparte con el delivery.':'.')+'</p>'+alias+
+    '<p>Total productos: <b>'+ar(d.total)+'</b>'+(c.entrega==='Envío'?'. El envío se coordina aparte con el delivery.':'.')+'</p>'+(c.progTxt?'<p>Lo programaste para <b>'+esc(c.progTxt)+'</b>.</p>':'')+alias+
     (NEG.wa?'<p>Para agilizarlo, mandanos el detalle por WhatsApp.</p>':'<p>El local se va a comunicar con vos para confirmarlo.</p>')+wa+
     '<button type="button" class="btn sec" data-act="cerrar">Cerrar</button></div>';
 }
@@ -678,6 +695,9 @@ async function enviar(ev){
     entrega:f.entrega.value,direccion:f.entrega.value==='Envío'?$('f-dir').value.trim():'',
     pago:f.pago.value,nota:$('f-nota').value.trim()
   };
+  const sp=$('f-prog');
+  c.programado=sp&&!sp.hidden?sp.value:'';
+  c.progTxt=c.programado?sp.options[sp.selectedIndex].text:'';
   const dig=c.whatsapp.replace(/\D/g,'');   if(dig.length<8||dig.length>15){err.textContent='Revisá tu WhatsApp: tiene que tener entre 8 y 15 números.';$('f-wa').focus();return;}   const items=Object.keys(CART).map(id=>({id:id,q:CART[id]}));
   if(!items.length){err.textContent='El carrito está vacío.';return;}
   if(falta()>0){err.textContent='El pedido mínimo es '+ar(TIENDA.minimo)+'.';return;}
@@ -737,7 +757,7 @@ function aplicar(d){
   $('buscar').hidden=PRODS.length<=8;
   pintarCerrado();
   pintarFiltros();pintarGrid();pintarBarra();pintarFreezer();pintarIdea(IDEA);
-  if(!FZ_AUTO){FZ_AUTO=1;if(FZ_OK&&TIENDA.abierto&&!leer('fz-visto'))setTimeout(()=>{if(!$('dlg').open&&!$('cookdlg').open)fzAbrir();},600);}
+  if(!FZ_AUTO){FZ_AUTO=1;if(FZ_OK&&puede()&&!leer('fz-visto'))setTimeout(()=>{if(!$('dlg').open&&!$('cookdlg').open)fzAbrir();},600);}
 }
 
 document.addEventListener('click',ev=>{
@@ -769,6 +789,7 @@ document.addEventListener('submit',ev=>{if(ev.target.id==='form')enviar(ev);});
 document.addEventListener('change',ev=>{
   const t=ev.target;
   if(t.id==='fz-papas'){FZ.papas=t.checked;pintarFreezer();}
+  if(t.name==='cuando'){const sp=$('f-prog'),pr=t.value==='prog';sp.hidden=!pr;sp.required=pr;if(pr)sp.focus();}
   if(t.name==='entrega'){
     const envio=t.value==='Envío';
     $('dir-wrap').hidden=!envio;$('f-dir').required=envio;
@@ -819,7 +840,7 @@ function pintarFreezer(){
   if(C.papas)$('fz-papas-n').textContent=C.papas[0].n+' · '+ar(C.papas[0].p);
   $('fz-papas').checked=FZ.papas&&!!C.papas;
   const its=fzCombo(),tot=its.reduce((a,x)=>a+x.p.p*x.q,0),t=FZ_T.find(x=>x.kg===FZ.kg);
-  $('fz-tk').innerHTML='<small>Tu combo recomendado</small><h3>'+esc(t.n)+' ('+FZ.kg+' kg)</h3><ul>'+its.map(x=>'<li><span>'+x.q+' kg · '+esc(x.p.n)+'</span><b>'+ar(x.p.p*x.q)+'</b></li>').join('')+'</ul><div class="fz-tot"><span>Total</span><b>'+ar(tot)+'</b></div>'+(TIENDA.abierto?'<button type="button" class="btn" data-act="fz-sumar">Sumar al pedido</button>':'<button type="button" class="btn" disabled>Ahora estamos cerrados</button>');
+  $('fz-tk').innerHTML='<small>Tu combo recomendado</small><h3>'+esc(t.n)+' ('+FZ.kg+' kg)</h3><ul>'+its.map(x=>'<li><span>'+x.q+' kg · '+esc(x.p.n)+'</span><b>'+ar(x.p.p*x.q)+'</b></li>').join('')+'</ul><div class="fz-tot"><span>Total</span><b>'+ar(tot)+'</b></div>'+(puede()?'<button type="button" class="btn" data-act="fz-sumar">Sumar al pedido</button>':'<button type="button" class="btn" disabled>Ahora estamos cerrados</button>');
 }
 function fzSumar(){
   if($('fzdlg').open)$('fzdlg').close();
@@ -856,7 +877,7 @@ function kitDe(i){
 function pintarIdea(i){
   conFoco($('tabs'),IDEAS.map((x,k)=>'<button type="button" role="tab" data-act="idea" data-id="'+k+'" aria-selected="'+(k===i)+'" aria-controls="idea-p">'+x.t+'</button>').join(''));
   const x=IDEAS[i],k=kitDe(i),tot=k.reduce((a,p)=>a+p.p,0);
-  const kit=k.length?'<div class="kit"><div><span>Kit sugerido</span><b>'+k.map(p=>'1 kg '+esc(p.n)).join(' + ')+' · '+ar(tot)+'</b></div>'+(TIENDA.abierto?'<button type="button" class="btn" data-act="kit" data-id="'+i+'">Sumar este kit</button>':'')+'</div>':'';
+  const kit=k.length?'<div class="kit"><div><span>Kit sugerido</span><b>'+k.map(p=>'1 kg '+esc(p.n)).join(' + ')+' · '+ar(tot)+'</b></div>'+(puede()?'<button type="button" class="btn" data-act="kit" data-id="'+i+'">Sumar este kit</button>':'')+'</div>':'';
   $('idea-p').innerHTML='<div class="fi"><img src="'+x.img+'" alt="'+esc(x.alt)+'" loading="lazy" onerror="this.remove()"></div><div><small>'+x.tag+'</small><h3>'+x.h+'</h3><p>'+x.d+'</p><p class="tip">'+x.tip+'</p>'+kit+'</div>';
 }
 function sumarKit(i){
